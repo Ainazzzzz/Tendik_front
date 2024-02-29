@@ -85,7 +85,9 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
          (interval) => interval.id === values.intervalInMinutes
       )
       if (!selectedInterval) {
-         errors.push('Интервал времени должен быть 30, 45, 60 или 90 минут!')
+         errors.push(
+            'Интервал времени должен быть 15, 20, 30, 45, 60 или 90 минут!'
+         )
       }
       if (errors.length > 0) {
          notify(errors[0], 'error')

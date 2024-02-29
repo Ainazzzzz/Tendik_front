@@ -74,7 +74,6 @@ export const createAppointments = createAsyncThunk(
                userFullName: obj.name,
                userPhoneNumber: obj.phone,
                userEmail: obj.email,
-               smsCode: obj.codeEmail,
             }
          )
          return data

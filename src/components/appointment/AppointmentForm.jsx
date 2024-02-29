@@ -8,7 +8,7 @@ import { departments, months } from '../../utils/constants/commons'
 import { notify } from '../../utils/constants/snackbar'
 import {
    createAppointments,
-   getCode,
+   // getCode,
 } from '../../store/appointment/appointmentThunk'
 
 const AppointmentForm = ({
@@ -17,7 +17,7 @@ const AppointmentForm = ({
    selectedDoctorId,
    openRegistered,
 }) => {
-   const [formSubmitted, setFormSubmitted] = useState(false)
+   // const [formSubmitted, setFormSubmitted] = useState(false)
 
    const dispatch = useDispatch()
 
@@ -66,30 +66,30 @@ const AppointmentForm = ({
       }
    }
 
-   const submitEmail = async (data, e) => {
-      e.preventDefault()
-      if (!errors.name) {
-         if (!errors.phone && !errors.email && getValues().email.length !== 0) {
-            setFormSubmitted(true)
-            dispatch(getCode({ email: data.email }))
-         } else {
-            notify(
-               errors.phone
-                  ? 'Номер телефона не соответствует правилам'
-                  : 'Поле email не заполнено',
-               'error'
-            )
-         }
-      } else {
-         notify('Напишите полное имя', 'error')
-      }
-   }
+   // const submitEmail = async (data, e) => {
+   //    e.preventDefault()
+   //    if (!errors.name) {
+   //       if (!errors.phone && !errors.email && getValues().email.length !== 0) {
+   //          setFormSubmitted(true)
+   //          dispatch(getCode({ email: data.email }))
+   //       } else {
+   //          notify(
+   //             errors.phone
+   //                ? 'Номер телефона не соответствует правилам'
+   //                : 'Поле email не заполнено',
+   //             'error'
+   //          )
+   //       }
+   //    } else {
+   //       notify('Напишите полное имя', 'error')
+   //    }
+   // }
 
    const submitAppointment = async (data, e) => {
       e.preventDefault()
       const department = departments[service]
       console.log(department, 'asfasf', service)
-      const formatDate = `2023-${getMonthNumber(date.month)}-${getDay(
+      const formatDate = `2024-${getMonthNumber(date.month)}-${getDay(
          date.day
       )}`
       const formatTime = date.time
@@ -117,13 +117,7 @@ const AppointmentForm = ({
    }
 
    return (
-      <Form
-         onSubmit={(e) =>
-            codeEmail
-               ? submitAppointment(getValues(), e)
-               : submitEmail(getValues(), e)
-         }
-      >
+      <Form onSubmit={(e) => submitAppointment(getValues(), e)}>
          <div>
             <InputForm
                label="Ваше имя и фамилия"
@@ -137,9 +131,11 @@ const AppointmentForm = ({
                })}
                onChange={(e) => setValue('name', e.target.value)}
                error={errors.name}
-               InputProps={{
-                  readOnly: formSubmitted,
-               }}
+               InputProps={
+                  {
+                     // readOnly: formSubmitted,
+                  }
+               }
             />
             <InputForm
                label="Номер телефона"
@@ -161,9 +157,11 @@ const AppointmentForm = ({
                })}
                onChange={(e) => setValue('phone', e.target.value)}
                error={errors.phone}
-               InputProps={{
-                  readOnly: formSubmitted,
-               }}
+               InputProps={
+                  {
+                     // readOnly: formSubmitted,
+                  }
+               }
             />
             <InputForm
                label="Ваш e-mail"
@@ -174,9 +172,11 @@ const AppointmentForm = ({
                })}
                onChange={(e) => setValue('email', e.target.value)}
                error={errors.email}
-               InputProps={{
-                  readOnly: formSubmitted,
-               }}
+               InputProps={
+                  {
+                     // readOnly: formSubmitted,
+                  }
+               }
             />
             {codeEmail && (
                <InputForm

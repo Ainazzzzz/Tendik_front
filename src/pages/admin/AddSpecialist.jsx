@@ -130,7 +130,7 @@ const AddSpecialist = () => {
                   </div>
                   <div>
                      <Info>Добавление специалиста</Info>
-                     <form onSubmit={handleSubmit}>
+                     <form autoComplete="off" onSubmit={handleSubmit}>
                         <FormContainer>
                            <Div>
                               <StyledInputLabel htmlFor="firstName">
@@ -402,7 +402,12 @@ const StyledTextField = styled(TextareaAutosize)((styles) => ({
       fontStyle: styles.italic ? 'italic' : '',
       textDecoration: styles.underline ? 'underline' : '',
       listStyle: 'square',
+      resize: 'none',
       '& .ccs-btngv5': {
+         outline: 'none',
+      },
+
+      '&:focus': {
          outline: 'none',
       },
    },

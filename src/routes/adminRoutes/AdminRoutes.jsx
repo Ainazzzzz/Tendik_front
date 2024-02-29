@@ -73,10 +73,7 @@ const AdminRoutes = () => {
                   <PrivateRoutes component={<Specialists />} isAuth={isAuth} />
                }
             />
-            <Route
-               path="/specialists/doctor-details/:doctorId"
-               element={<DoctorDetails />}
-            />
+            <Route path="/specialists/:doctorId" element={<DoctorDetails />} />
             <Route path="/specialists/add-doctor" element={<AddSpecialist />} />
             <Route
                path={routes.ADMIN.patients}
