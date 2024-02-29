@@ -1,4 +1,4 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ThemeProvider } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
@@ -13,8 +13,9 @@ import { injectStore } from './config/axiosInstance'
 import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 root.render(
-   <React.StrictMode>
+   <StrictMode>
       <LocalizationProvider adapterLocale="ru" dateAdapter={AdapterDayjs}>
          <Provider store={injectStore(store)}>
             <BrowserRouter>
@@ -26,5 +27,5 @@ root.render(
             </BrowserRouter>
          </Provider>
       </LocalizationProvider>
-   </React.StrictMode>
+   </StrictMode>
 )
