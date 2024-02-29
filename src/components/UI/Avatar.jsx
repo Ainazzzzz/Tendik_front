@@ -14,8 +14,13 @@ const AvatarUpload = ({ photo, onChange, ...rest }) => {
       >
          <input hidden accept="image/*" type="file" onChange={onChange} />
          <Stack direction="row" spacing={2}>
-            <AvatarGroupStyle sx={{ bgcolor: '#E2E4E8' }} variant="rounded">
-               <img src={photo} alt="" />
+            <AvatarGroupStyle
+               photo={photo}
+               sx={{ bgcolor: '#E2E4E8' }}
+               variant="rounded"
+            >
+               {photo && <img src={photo} alt="" />}
+
                <AddPhoto />
             </AvatarGroupStyle>
          </Stack>
@@ -23,8 +28,12 @@ const AvatarUpload = ({ photo, onChange, ...rest }) => {
    )
 }
 export default AvatarUpload
-const AvatarGroupStyle = styled(Avatar)`
-   width: 140px;
-   height: 140px;
-   border-radius: 100px;
-`
+const AvatarGroupStyle = styled(Avatar)(() => ({
+   width: '140px',
+   height: '140px',
+   borderRadius: '100px',
+
+   '& img': {
+      width: '100%',
+   },
+}))

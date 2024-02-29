@@ -207,7 +207,7 @@ const DoctorDetails = () => {
                </ContainerMain>
             </Container>
             <ContainerDescription>
-               <InputLabel htmlFor="description">Должность</InputLabel>
+               <InputLabel htmlFor="description">Описание</InputLabel>
                <Input
                   id="description"
                   placeholder="Напишите описание"

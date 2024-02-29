@@ -152,21 +152,31 @@ export const MED_SERVICE = [
 export const INTERVAL_IN_MINUTES = [
    {
       id: 1,
+      title: '15 минут',
+      time: 15,
+   },
+   {
+      id: 2,
+      title: '20 минут',
+      time: 20,
+   },
+   {
+      id: 3,
       title: '30 минут',
       time: 30,
    },
    {
-      id: 2,
+      id: 4,
       title: '45 минут',
       time: 45,
    },
    {
-      id: 3,
-      title: ' 1 час',
+      id: 5,
+      title: '1 час',
       time: 60,
    },
    {
-      id: 4,
+      id: 6,
       title: '1,5 часа',
       time: 90,
    },
