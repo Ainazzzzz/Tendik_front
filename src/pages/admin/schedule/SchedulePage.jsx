@@ -264,11 +264,14 @@ const SchedulePage = () => {
             </div>
             <div className="info">
                <div className="inner-block">
-                  <div className="blue-block" /> <span>- Свободное время</span>
+                  <div className="blue-block" /> <span>- Cвободный слот</span>
                </div>
                <div className="inner-block">
                   <div className="green-block" />
-                  <span>- Не свободное время</span>
+                  <span>- Занятый слот</span>
+               </div>
+               <div className="inner-block">
+                  <div className="red-block" /> <span>- Экстра слот</span>
                </div>
             </div>
             <div>
@@ -404,6 +407,12 @@ const Box = styled('div')`
       background-color: #048741;
       border-radius: 50%;
    }
+   .red-block {
+      width: 30px;
+      height: 30px;
+      background-color: #f10303;
+      border-radius: 50%;
+   }
 `
 const GlobalContainer = styled('div')`
    background-color: #fff;
@@ -514,7 +523,7 @@ const TimeBox = styled('div')`
    font-style: italic;
    font-weight: 500;
    padding: 5px;
-
+   text-align: start;
    p {
       ${(props) =>
          props.hasTime &&
@@ -524,10 +533,13 @@ const TimeBox = styled('div')`
                interval.isAvailable === 'false' &&
                `
                &:nth-child(${props.timeIntervals.indexOf(interval) + 1}) {
-                  background: #048741;
-                  color: white;
+                  background: ${
+                     interval.isReserved === 'true' ? 'red' : '#048741'
+                  };
+                  color: ${interval.isReserved === 'true' ? 'white' : 'white'};
                   width: 6.7rem;
                   margin-left: -0.3rem;
+                  padding-left: 5px;
                }
             `
          )}
