@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
@@ -7,10 +7,16 @@ import { fetchDoctorById } from '../../store/doctors/doctorsThunk'
 import Button from '../../components/UI/Button'
 import { Vector } from '../../assets'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
+import OnlineAppointment from '../../components/appointment/OnlineAppointment'
+import { localStorageKeys } from '../../utils/constants/constants'
+import { notify } from '../../utils/constants/snackbar'
 
 const DoctorInnerPage = () => {
+   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
    const dispatch = useDispatch()
    const { doctorId } = useParams()
+   const { isAuth } = useSelector((state) => state.authorization)
+
    const { selectedDoctor } = useSelector((state) => state.doctors)
 
    useEffect(() => {
@@ -21,8 +27,25 @@ const DoctorInnerPage = () => {
       window.history.back()
    }
 
+   const isDrawerOpenHandler = () => {
+      if (isAuth) {
+         localStorage.setItem(
+            localStorageKeys.DRAWER_MODAL_KEY,
+            JSON.stringify(true)
+         )
+         setIsDrawerOpen(true)
+      } else {
+         notify('Вы не зарегистрированы', 'error')
+         localStorage.setItem(
+            localStorageKeys.SIGN_IN_MODAL_KEY,
+            JSON.stringify(true)
+         )
+      }
+   }
+
    return (
       <Container>
+         <OnlineAppointment open={isDrawerOpen} setOpen={setIsDrawerOpen} />
          <StyledDoctorsContainer>
             <Stack spacing={2}>
                <NavContainer separator="›" aria-label="breadcrumb">
@@ -64,7 +87,7 @@ const DoctorInnerPage = () => {
                   <p>
                      Должность: <b>{selectedDoctor.position}</b>
                   </p>
-                  <StButton variant="contained" type="submit">
+                  <StButton variant="contained" onClick={isDrawerOpenHandler}>
                      Записаться на прием
                   </StButton>
                </div>
