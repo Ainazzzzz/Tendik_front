@@ -11,6 +11,7 @@ import { theme } from './utils/constants/theme'
 import { store } from './store'
 import { injectStore } from './config/axiosInstance'
 import App from './App'
+import './i18n'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 

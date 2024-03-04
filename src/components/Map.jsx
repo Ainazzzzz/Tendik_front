@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import DG from '2gis-maps'
-import LocationIcon from '../assets/icons/location1.svg'
-import CompanyIcon from '../assets/icons/logo1.svg'
+import LocationIcon from '../assets/icons/location.svg'
+import CompanyIcon from '../assets/icons/map-logo.svg'
 
 const Map = () => {
    useEffect(() => {
       const map = DG.map('map-container', {
-         center: [42.874722, 74.612222],
+         center: [42.943842, 74.584486],
          zoom: 12,
       })
 
       const customIcon = DG.icon({
          iconUrl: LocationIcon,
-         iconAnchor: [40, 40],
+         iconAnchor: [15, 40],
       })
-      const locationMarker = DG.marker([42.905922, 74.590922], {
+
+      const locationMarker = DG.marker([42.943842, 74.584486], {
          icon: customIcon,
       })
 
@@ -23,7 +24,8 @@ const Map = () => {
          iconUrl: CompanyIcon,
          iconAnchor: [32, 5],
       })
-      const companyMarker = DG.marker([42.905922, 74.590922], {
+
+      const companyMarker = DG.marker([42.943842, 74.584486], {
          icon: companyIcon,
       })
 

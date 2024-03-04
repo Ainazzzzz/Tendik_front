@@ -3,6 +3,7 @@ import { IconButton, InputAdornment, styled } from '@mui/material'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import Button from '../../../components/UI/Button'
 import { Input } from '../../../components/UI/input/Input'
 import {
@@ -24,6 +25,7 @@ import ForgotPassword from '../../login/ForgotPassword'
 import { localStorageKeys } from '../../../utils/constants/constants'
 import OnlineAppointment from '../../../components/appointment/OnlineAppointment'
 import { routes } from '../../../utils/constants/routes'
+import { setLanguageHeader } from '../../../config/axiosInstance'
 
 const Header = ({ logoutHandler, variant }) => {
    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
@@ -32,9 +34,18 @@ const Header = ({ logoutHandler, variant }) => {
       useState(false)
    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+   const { i18n } = useTranslation()
+
    const navigate = useNavigate()
 
    const { isAuth } = useSelector((state) => state.authorization)
+
+   const changeLanguage = (language) => {
+      i18n.changeLanguage(language)
+      setLanguageHeader(i18n.language)
+   }
+
+   setLanguageHeader(i18n.language)
 
    const navigateToForgotPassword = (e) => {
       e.preventDefault()
@@ -194,7 +205,7 @@ const Header = ({ logoutHandler, variant }) => {
                   }}
                />
                <ContainerIcons>
-                  <a href="https://www.instagram.com">
+                  <a href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA==">
                      <InstagramIcon />
                   </a>
                   <a href="https://web.telegram.org/k/#-4032240673">
@@ -212,7 +223,20 @@ const Header = ({ logoutHandler, variant }) => {
                         <h3>+996(999) 344 433</h3>
                      </div>
                   </div>
-
+                  <LanguageSwitcherStyle>
+                     <button
+                        onClick={() => changeLanguage('ky')}
+                        disabled={i18n.resolvedLanguage === 'ky'}
+                     >
+                        KG
+                     </button>
+                     <button
+                        onClick={() => changeLanguage('ru')}
+                        disabled={i18n.resolvedLanguage === 'ru'}
+                     >
+                        RU
+                     </button>
+                  </LanguageSwitcherStyle>
                   <ReusableMenu
                      buttonIcon={<ProfileIcon />}
                      menuItems={menuItems}
@@ -382,3 +406,26 @@ const ContainerIcons = styled('div')`
    display: flex;
    gap: 10px;
 `
+
+const LanguageSwitcherStyle = styled('div')(() => ({
+   display: 'flex',
+   'button:nth-child(1)': {
+      borderRadius: '5px 0 0 5px',
+   },
+   'button:nth-child(2)': {
+      borderRadius: '0 5px 5px 0',
+   },
+   button: {
+      padding: '5px 10px',
+      color: '#048741',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: '#f3f1f1',
+      '&:hover': {
+         backgroundColor: '#ebe8e8',
+      },
+      '&:disabled': {
+         backgroundColor: '#dadada',
+      },
+   },
+}))
