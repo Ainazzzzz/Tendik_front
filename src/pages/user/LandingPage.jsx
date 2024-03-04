@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
-import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
 import ApplicationForm from '../../components/ApplicationForm'
-import { MainDoctorImage, WelcomeWord } from '../../assets'
+import { MainDoctorImage, WelcomeWord, WelcomeWordKg } from '../../assets'
 import AboutClinicLayout from '../../components/AboutClinicLayout'
-import {
-   BEST_DOCTORS_IMAGES,
-   MAIN_MED_SERVICES,
-} from '../../utils/services/med_service'
+import { BEST_DOCTORS_IMAGES } from '../../utils/services/med_service'
 import { ApplicationModal } from '../../components/ApplicationModal'
 import ChangePassword from '../../layout/login/ChangePassword'
 
 const LandingPage = ({ variant }) => {
    window.scrollTo({ top: 0 })
 
+   const { i18n } = useTranslation()
+
    const [showApplicationModal, setShowApplicationModal] = useState(false)
-   const navigate = useNavigate()
 
    const showModalHandler = () => {
       setShowApplicationModal(true)
@@ -28,10 +26,6 @@ const LandingPage = ({ variant }) => {
       setShowApplicationModal(false)
    }
 
-   const naviageteToServicePage = () => {
-      navigate('/service')
-   }
-
    return (
       <>
          {variant === 'password' ? <ChangePassword /> : null}
@@ -39,9 +33,14 @@ const LandingPage = ({ variant }) => {
             <div>
                <Box>
                   <InfoBox>
-                     <img src={WelcomeWord} alt="welcomeWord" />
+                     <img
+                        src={
+                           i18n.language === 'ky' ? WelcomeWordKg : WelcomeWord
+                        }
+                        alt="welcomeWord"
+                     />
                      <p>
-                        Международный Медицинская клиника «HealthCheck — это
+                        Международный Медицинская клиника «Tendik» — это
                         клиника, в которой применяются новейшие диагностические
                         и лечебные технологии и ведут прием лучшие специалисты.
                      </p>
@@ -87,31 +86,6 @@ const LandingPage = ({ variant }) => {
                         </p>
                      </InfoDepartmentBox>
                   </MainInfoDepartmentBox>
-                  <div>
-                     <h1>
-                        Наши <span>услуги</span>
-                     </h1>
-                     <Title>
-                        За все время работы клиника приняла более 1 млн.
-                        пациентов.
-                     </Title>
-                     <ServiceBox>
-                        {MAIN_MED_SERVICES.map((service) => (
-                           <div key={service.id}>
-                              <ServiceStyle>{service.img}</ServiceStyle>
-                              <ServiceTitle>{service.title}</ServiceTitle>
-                           </div>
-                        ))}
-                     </ServiceBox>
-                     <ButtonBox>
-                        <Button
-                           variant="outlined"
-                           onClick={naviageteToServicePage}
-                        >
-                           Смотреть все
-                        </Button>
-                     </ButtonBox>
-                  </div>
                </DetailsBox>
             </div>
          </GlobalContainer>
@@ -122,8 +96,8 @@ const LandingPage = ({ variant }) => {
                   Лучшие <span>врачи</span>
                </h1>
                <TitleStyle>
-                  Попасть в команду медицинской клиники «HealthCheck» могут
-                  только лучшие специалисты с многолетней практикой и доказанным
+                  Попасть в команду медицинской клиники «Tendik» могут только
+                  лучшие специалисты с многолетней практикой и доказанным
                   опытом.
                </TitleStyle>
                <DoctorsBox>
@@ -242,50 +216,12 @@ const MainInfoDepartmentBox = styled('div')(() => ({
    justifyContent: 'center',
    alignItems: 'center',
 }))
-const Title = styled('p')(() => ({
-   fontSize: '18px',
-   fontWeight: 400,
-   lineHeight: '25px',
-   marginTop: '34px',
-}))
-const ServiceStyle = styled('div')(() => ({
-   border: '1px solid #DEDEDE',
-   width: '102px',
-   height: '106px',
-   borderRadius: '18px',
-   display: 'flex',
-   justifyContent: 'center',
-   alignItems: 'center',
-   margin: '60px 0 20px 0',
 
-   '&:hover': {
-      background: ' linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-      path: {
-         fill: '#ffff',
-      },
-   },
-}))
-const ServiceBox = styled('div')(() => ({
-   display: 'flex',
-   flexDirection: 'row',
-   justifyContent: 'space-between',
-   div: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-   },
-}))
-const ServiceTitle = styled('p')(() => ({
-   fontFamily: 'Manrope',
-   fontSize: '16px',
-   fontWeight: 300,
-   color: '#000000',
-   paddingBottom: '48px',
-}))
 const ButtonBox = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'center',
 }))
+
 const DoctorsBox = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
@@ -293,6 +229,7 @@ const DoctorsBox = styled('div')(() => ({
    gap: '3rem',
    padding: '0px 15px',
 }))
+
 const MainDoctorsBox = styled('div')(() => ({
    h1: {
       fontWeight: 600,

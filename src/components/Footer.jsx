@@ -17,12 +17,12 @@ const Footer = () => {
             <InfoBlock>
                <LogoContainer>
                   <NavLink to="/homepage">
-                     <img src={Logo} alt="healthcheck" />
+                     <img src={Logo} alt="tendik" />
                   </NavLink>
                </LogoContainer>
-               <span>Медицинская клиника «HealthCheck»</span>
+               <span>Медицинская клиника Tendik</span>
                <p>
-                  Международная Медицинская клиника <br /> «HealthCheck»— это
+                  Международная Медицинская клиника <br /> «Tendik»— это
                   клиника, в которой применяются <br />
                   новейшие диагностические и лечебные технологии и<br /> ведут
                   прием лучшие специалисты.
@@ -32,28 +32,29 @@ const Footer = () => {
                <span>Контактная информация</span>
                <li>
                   <img src={LocationIcon} alt="location" />
-                  <p>106452, г. Бишкек, Гражданская 119</p>
+                  <p>106452, г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
                   <img src={TimeIcon} alt="time" />
-                  <p>пн-сб 08:00 до 18:00</p>
+                  <p>пн-сб 09:00 до 16:00</p>
                </li>
                <li>
                   <img src={PhoneIcon} alt="phone" />
                   <p>
-                     +996(800) 000 000 <br /> +996(505) 000 000
+                     +996(770) 503 284
+                     <br /> +996(707) 503 284
                   </p>
                </li>
                <li>
                   <img src={Email} alt="email" />
-                  <p>healthchek.kg</p>
+                  <p>tendik.kg</p>
                </li>
             </InfoBlock>
             <InfoBlock>
                <span>Мы в социальных сетях:</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA=="
                      target="_blank"
                      rel="noreferrer"
                   >
@@ -78,14 +79,13 @@ const Footer = () => {
          </InfoContainer>
          <Navigations>
             <NavLink to="/aboutClinic">О клинике</NavLink>
-            <NavLink to="/services">Услуги</NavLink>
             <NavLink to="/doctors">Врачи</NavLink>
             <NavLink to="/price">Прайс</NavLink>
             <NavLink to="/reviews">Отзывы</NavLink>
             <NavLink to="/contacts">Контакты</NavLink>
          </Navigations>
          <div className="line" />
-         <p>© Peaksoft House 2023 | HealthCheck | Все права защищены</p>
+         <p>© Peaksoft House 2023 | Tendik | Все права защищены</p>
       </FooterContainer>
    )
 }

@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 import Button from '../../../components/UI/Button'
 import { Input } from '../../../components/UI/input/Input'
 import {
@@ -182,12 +183,12 @@ const Header = ({ logoutHandler, variant }) => {
                <div className="containerInfo">
                   <div className="address">
                      <LocationsIcon />
-                     <h3>106452, г. Бишкек, Гражданская 119</h3>
+                     <h3>106452, г. Бишкек, Тендик 4/1</h3>
                   </div>
                   <div className="workingHours">
                      <ScheduleIcon />
                      <h3>
-                        <span>пн-сб</span> 08:00 до 18:00
+                        <span>пн-сб</span> 09:00 до 16:00
                      </h3>
                   </div>
                </div>
@@ -219,8 +220,8 @@ const Header = ({ logoutHandler, variant }) => {
                   <div className="numbers">
                      <PhoneIcon />
                      <div>
-                        <h3>+996(500) 344 433</h3>
-                        <h3>+996(999) 344 433</h3>
+                        <h3>+996(770) 503 284</h3>
+                        <h3>+996(707) 503 284</h3>
                      </div>
                   </div>
                   <LanguageSwitcherStyle>
@@ -251,9 +252,8 @@ const Header = ({ logoutHandler, variant }) => {
                </StyleCheck>
                <NavList>
                   <NavlinkStyled to={routes.USER.aboutClinic}>
-                     О клинике
+                     {t('header.aboutClinic')}
                   </NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.service}>Услуги</NavlinkStyled>
                   <NavlinkStyled to={routes.USER.doctors}>Врачи</NavlinkStyled>
                   <NavlinkStyled to={routes.USER.prices}>Прайс</NavlinkStyled>
                   <NavlinkStyled to={routes.USER.contacts}>

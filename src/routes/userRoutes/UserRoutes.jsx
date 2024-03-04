@@ -4,7 +4,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import { logout } from '../../store/auth/authSlice'
 import Header from '../../layout/user/header/Header'
 import LandingPage from '../../pages/user/LandingPage'
-import OurAllServices from '../../pages/user/OurAllServices'
 import AboutHealth from '../../components/AboutHealth'
 import Prices from '../../components/Prices'
 import Contacts from '../../components/Contacts'
@@ -18,7 +17,6 @@ import GetResult from '../../pages/user/GetResult'
 import Doctors from '../../pages/user/Doctors'
 import DoctorInnerPage from '../../pages/user/DoctorInnerPage'
 import { routes } from '../../utils/constants/routes'
-import ServiceDetails from '../../components/UI/ServiceDetails'
 
 const UserRoutes = () => {
    const dispatch = useDispatch()
@@ -37,12 +35,9 @@ const UserRoutes = () => {
          <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/homepage" element={<LandingPage />} />
-            <Route path="/service" element={<OurAllServices />} />
             <Route path="/about-clinic" element={<AboutHealth />} />
             <Route path="/prices" element={<Prices />} />
             <Route path="/contacts" element={<Contacts />} />
-            <Route path="/service" element={<OurAllServices />} />
-            <Route path="/service/:id/details" element={<ServiceDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/my-notes" element={<TableParents />} />
             <Route

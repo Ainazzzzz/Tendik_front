@@ -37,7 +37,6 @@ const SignUp = ({ open, setOpen, navigateToSignIn }) => {
          lastName: '',
          middleName: '',
          phoneNumber: '',
-         email: '',
          password: '',
          copyPassword: '',
       },
@@ -176,23 +175,6 @@ const SignUp = ({ open, setOpen, navigateToSignIn }) => {
                   />
                   {errors.phoneNumber && (
                      <p className="message">{errors.phoneNumber?.message}</p>
-                  )}
-               </div>
-               <div className="inputWrapper">
-                  <Input
-                     placeholder="Email"
-                     error={errors.email}
-                     {...register('email', {
-                        required: 'Поле не заполнено',
-                        setValueAs: (v) => v.trim(),
-                        pattern: {
-                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                           message: 'Неверный формат электронной почты',
-                        },
-                     })}
-                  />
-                  {errors.email && (
-                     <p className="message">{errors.email?.message}</p>
                   )}
                </div>
                <div className="inputWrapper">

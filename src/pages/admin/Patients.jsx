@@ -47,7 +47,7 @@ export const PatientsAdmin = () => {
       },
       { id: 'fullName', label: 'Имя Фамилия' },
       { id: 'phoneNumber', label: 'Номер телефона' },
-      { id: 'email', label: 'Почта' },
+      { id: 'password', label: 'Пароль' },
       { id: 'date', label: 'Дата сдачи' },
       {
          id: 'delete',

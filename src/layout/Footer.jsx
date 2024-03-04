@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
 import {
    Email,
+   HealthCheckIcon,
    InstagramWhite,
    LocationIcon,
-   Logo,
    PhoneIcon,
    TelegramWhite,
    TimeIcon,
@@ -19,12 +19,12 @@ const Footer = () => {
             <InfoBlock>
                <LogoContainer>
                   <NavLink to="/homepage">
-                     <Logo />
+                     <HealthCheckIcon />
                   </NavLink>
                </LogoContainer>
-               <span>Медицинская клиника «HealthCheck»</span>
+               <span>Медицинская клиника «Tendik»</span>
                <p>
-                  Международная Медицинская клиника <br /> «HealthCheck»— это
+                  Международная Медицинская клиника <br /> «Tendik»— это
                   клиника, в которой применяются <br />
                   новейшие диагностические и лечебные технологии и<br /> ведут
                   прием лучшие специалисты.
@@ -34,28 +34,29 @@ const Footer = () => {
                <span>Контактная информация</span>
                <li>
                   <LocationIcon />
-                  <p>106452, г. Бишкек, Гражданская 119</p>
+                  <p>106452, г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
                   <TimeIcon />
-                  <p>пн-сб 08:00 до 18:00</p>
+                  <p>пн-сб 09:00 до 16:00</p>
                </li>
                <li>
                   <PhoneIcon />
                   <p>
-                     +996(500) 344 433 <br /> +996(999) 344 433
+                     +996(770) 503 284
+                     <br /> +996(707) 503 284
                   </p>
                </li>
                <li>
                   <Email />
-                  <p>healthchek.kg</p>
+                  <p>tendik.kg</p>
                </li>
             </InfoBlock>
             <InfoBlock>
                <span>Мы в социальных сетях:</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA=="
                      target="_blank"
                      rel="noreferrer"
                   >
@@ -80,13 +81,12 @@ const Footer = () => {
          </InfoContainer>
          <Navigations>
             <NavLink to="/about-clinic">О клинике</NavLink>
-            <NavLink to="/service">Услуги</NavLink>
             <NavLink to="/doctors">Врачи</NavLink>
             <NavLink to="/prices">Прайс</NavLink>
             <NavLink to="/contacts">Контакты</NavLink>
          </Navigations>
          <div className="line" />
-         <p>© Peaksoft House 2023 | HealthCheck | Все права защищены</p>
+         <p>© Peaksoft House 2023 | Tendik | Все права защищены</p>
       </FooterContainer>
    )
 }

@@ -28,25 +28,21 @@ const Contacts = () => {
             </Title>
             <ContainerInfo>
                <ContactInfo>Контактные номера:</ContactInfo>
-               <ContactInfoP>
-                  +996(500) 344 433 ; +996(999) 344 433
-               </ContactInfoP>
+               <ContactInfoP>+996(770) 503 284; +996(707) 503 284</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
                <ContactInfo>Наш адрес:</ContactInfo>
-               <ContactInfoP>
-                  Кыргызстан, г. Бишкек, Гражданская 119
-               </ContactInfoP>
+               <ContactInfoP>Кыргызстан, г. Бишкек, Тендик 4/1</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
                <ContactInfo>Режим работы клиники:</ContactInfo>
                <ContactInfoP>
-                  Понедельник - суббота с 08:00 до 18:00.
+                  Понедельник - суббота с 09:00 до 16:00.
                </ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
                <ContactInfo>Электронная почта :</ContactInfo>
-               <ContactInfoP> healthchek.kg</ContactInfoP>
+               <ContactInfoP> tendik.kg</ContactInfoP>
             </ContainerInfo>
          </Wrapper>
          <Map />

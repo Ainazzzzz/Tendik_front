@@ -36,7 +36,7 @@ const SignIn = ({
    } = useForm({
       mode: 'all',
       defaultValues: {
-         email: '',
+         phoneNumber: '',
          password: '',
       },
    })
@@ -55,7 +55,7 @@ const SignIn = ({
             navigate,
          })
       )
-      values.email = ''
+      values.phoneNumber = ''
       values.password = ''
    }
 
@@ -98,24 +98,19 @@ const SignIn = ({
          <FormControlStyled onSubmit={handleSubmit(handleSignIn)}>
             <div>
                <FormLabel className="topic">ВОЙТИ</FormLabel>
-               {/* <CloseIcon className="closeIcon" onClick={handleClose} /> */}
             </div>
             <div>
                <Input
-                  placeholder="Логин"
-                  error={errors.email}
-                  {...register('email', {
+                  placeholder="Номер телефона"
+                  error={errors.phoneNumber}
+                  {...register('phoneNumber', {
                      setValueAs: (v) => v.trim(),
                      required: 'Поле не заполнено',
-                     pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Неверный формат электронной почты',
-                     },
                   })}
                />
 
-               {errors.email && (
-                  <p className="message">{errors.email?.message}</p>
+               {errors.phoneNumber && (
+                  <p className="message">{errors.phoneNumber?.message}</p>
                )}
             </div>
             <div>
