@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { IconButton, InputAdornment } from '@mui/material'
-import { MinusIcon, SearchIcon } from '../../../assets'
+import { MinusIcon, PlusIcon, SearchIcon } from '../../../assets'
 import Button from '../../../components/UI/Button'
 import TableSchedule from '../../../components/UI/TableSchedule'
 import DatePicker from '../../../components/UI/DatePicker'
@@ -11,6 +11,7 @@ import { getAllSchedules } from '../../../store/schedule/scheduleThunk'
 import AddTemplate from './AddTemplate'
 import ChangeTemplate from './ChangeTemplate'
 import { Input } from '../../../components/UI/input/Input'
+import { ModalShedule } from '../ModalShedule'
 
 const SchedulePage = () => {
    const [startDate, setStartDate] = useState('')
@@ -24,6 +25,7 @@ const SchedulePage = () => {
       rowIndex: -1,
       times: [],
    })
+   const [isModalOpen, setIsModalOpen] = useState(false)
 
    const { isLoading, schedules } = useSelector((state) => state.schedule)
 
@@ -85,6 +87,14 @@ const SchedulePage = () => {
 
    const handleChange = (event) => {
       setSearchValue(event.target.value)
+   }
+
+   const handleOpenModal = () => {
+      setIsModalOpen(true)
+   }
+
+   const handleCloseModal = () => {
+      setIsModalOpen(false)
    }
 
    const handleCellClick = async (doctor, rowIndex, date) => {
@@ -202,7 +212,16 @@ const SchedulePage = () => {
    return (
       <Container>
          <div className="style-nav">
-            <h3>Онлайн-запись</h3>
+            <div className="title-button">
+               <h3>Онлайн-запись</h3>
+               <Button
+                  className="customButtonStyle"
+                  startIcon={<PlusIcon />}
+                  onClick={handleOpenModal}
+               >
+                  ДОБАВИТЬ РАСПИСАНИЕ
+               </Button>
+            </div>
             <ul>
                <li>
                   <StyledeNavLink
@@ -222,6 +241,11 @@ const SchedulePage = () => {
                </li>
             </ul>
          </div>
+         <ModalShedule
+            open={isModalOpen}
+            onClose={handleCloseModal}
+            setIsModalOpen={setIsModalOpen}
+         />
          <StyledInput
             type="text"
             placeholder="Поиск"
@@ -321,6 +345,18 @@ const Container = styled('div')(() => ({
    padding: 'calc(11vh + 3rem) 4% 3.8vh 4%',
    backgroundColor: '#F5F5F5',
    height: '101vh',
+
+   '& .title-button': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '1.5rem',
+      h3: {
+         fontSize: '24px',
+         fontWeight: 500,
+      },
+   },
+
    '.style-nav': {
       display: 'flex',
       flexDirection: 'column',

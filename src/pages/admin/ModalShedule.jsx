@@ -22,7 +22,7 @@ import Button from '../../components/UI/Button'
 import { notify } from '../../utils/constants/snackbar'
 import { DAYS, RUSSIAN_DAYS } from '../../utils/constants/commons'
 
-export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
+export const ModalShedule = ({ open, onClose, setIsModalOpen }) => {
    const { doctors } = useSelector((state) => state.appointmentsAdmin)
    const dispatch = useDispatch()
 

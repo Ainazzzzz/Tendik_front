@@ -13,10 +13,11 @@ import {
    searchAppointmentsByIdAThunk,
 } from '../../store/appointments/adminAppointmentsThunk'
 import Button from '../../components/UI/Button'
-import { ModalAppointments } from './ModalAppointments'
+import { ModalShedule } from './ModalShedule'
 import Modal from '../../components/UI/Modal'
 import { notify } from '../../utils/constants/snackbar'
 import SearchInput from '../../components/UI/SearchInput'
+import { ModalAppointents } from './ModalAppointents'
 
 export const AdminAppointmentsPage = () => {
    const { appointmentsAdmin } = useSelector((state) => state.appointmentsAdmin)
@@ -263,7 +264,7 @@ export const AdminAppointmentsPage = () => {
             </ul>
          </div>
          <SearchInput value={searchValue} onChange={handleChange} />
-         <ModalAppointments
+         <ModalAppointents
             open={isModalOpen}
             onClose={handleCloseModal}
             setIsModalOpen={setIsModalOpen}
