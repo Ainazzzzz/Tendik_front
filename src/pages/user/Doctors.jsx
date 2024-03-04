@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from '@emotion/styled'
 import { Breadcrumbs, Stack } from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { t } from 'i18next'
 import DoctorCard from '../../components/UI/DoctorCard'
 import { fetchDoctors } from '../../store/doctors/doctorsThunk'
 
@@ -51,17 +52,13 @@ const Doctors = () => {
             </Container>
          </Stack>
          <Titl>
-            Наши <span style={{ color: '#048741' }}>врачи</span>
+            {t('main.our')}
+            <span style={{ color: '#048741' }}> {t('main.doctors')}</span>
          </Titl>
+         <p className="text">{t('main.ourDoctorsFirstDescription')}</p>
          <p className="text">
-            Попасть в команду медицинской клиники «Medical Clinic» могут <br />
-            только лучшие специалисты c многолетней практикой и доказанным
-            опытом.
-         </p>
-         <p className="text">
-            Мы развиваемся, учимся и оттачиваем мастерство, стажируемся в
-            ведущих университетах <br /> Европы, чтобы еще на шаг стать ближе к
-            совершенству.
+            {t('main.ourDoctorsSecondDscription')} <br />
+            {t('main.ourDoctorsSecond')}
          </p>
 
          <StyledDoctorsInnerContainer>
@@ -76,14 +73,14 @@ const Doctors = () => {
                </div>
             ))}
             <StyledSpan>
-               В нашей клинике работают: <b>более 30 специалистов</b>
+               {t('main.ourClinicDoctors')} <b>{t('moreDoctors')}</b>
                {!showAllDepartments ? (
                   <StyledButton onClick={handleShowMoreClick}>
-                     Показать больше
+                     {t('main.readMore')}
                   </StyledButton>
                ) : (
                   <StyledButton onClick={handleShowLessClick}>
-                     Показать меньше
+                     {t('main.showLess')}
                   </StyledButton>
                )}
             </StyledSpan>

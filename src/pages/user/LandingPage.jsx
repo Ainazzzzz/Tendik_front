@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
@@ -39,13 +40,9 @@ const LandingPage = ({ variant }) => {
                         }
                         alt="welcomeWord"
                      />
-                     <p>
-                        Международный Медицинская клиника «Tendik» — это
-                        клиника, в которой применяются новейшие диагностические
-                        и лечебные технологии и ведут прием лучшие специалисты.
-                     </p>
+                     <p>{t('main.welcomeDescription')}</p>
                      <Button variant="outlined" onClick={showModalHandler}>
-                        ОСТАВЬТЕ ЗАЯВКУ
+                        {t('main.leaveRequest')}
                      </Button>
                      <BasicModalStyle
                         open={showApplicationModal}
@@ -58,32 +55,24 @@ const LandingPage = ({ variant }) => {
                </Box>
                <DetailsBox>
                   <h1>
-                     Почему <span>нас выбирают?</span>
+                     {t('main.why')}
+                     <span> {t('main.whyAreWeBeingChosen')}</span>
                   </h1>
                   <MainInfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>1</span>
-                        <h3>Высокий профессионализм сотрудников</h3>
-                        <p>
-                           Медицинская лицензия, большой опыт врачей и
-                           постоянное повышение квалификации.
-                        </p>
+                        <h3>{t('main.firstAnswerTitle')}</h3>
+                        <p>{t('main.firstAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>2</span>
-                        <h3>Наши пациенты - наши лучшие друзья</h3>
-                        <p>
-                           Все аппараты и медицинские препараты сертифицированы
-                           и лицензированы.
-                        </p>
+                        <h3>{t('main.secondAnswerTitle')}</h3>
+                        <p>{t('main.secondAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>3</span>
-                        <h3>Комфортные условия</h3>
-                        <p>
-                           Уютная обстановка и отзывчивый персонал сделают поход
-                           в клинику максимально приятным.
-                        </p>
+                        <h3>{t('main.thirdAnswerTitle')}</h3>
+                        <p>{t('main.thirdAnswer')}</p>
                      </InfoDepartmentBox>
                   </MainInfoDepartmentBox>
                </DetailsBox>
@@ -93,13 +82,9 @@ const LandingPage = ({ variant }) => {
          <GlobalDoctorContainer>
             <MainDoctorsBox>
                <h1>
-                  Лучшие <span>врачи</span>
+                  {t('main.best')} <span>{t('main.doctors')}</span>
                </h1>
-               <TitleStyle>
-                  Попасть в команду медицинской клиники «Tendik» могут только
-                  лучшие специалисты с многолетней практикой и доказанным
-                  опытом.
-               </TitleStyle>
+               <TitleStyle>{t('main.bestDoctorsDescription')}</TitleStyle>
                <DoctorsBox>
                   {BEST_DOCTORS_IMAGES.map((doctor) => (
                      <DoctorBox key={doctor.id}>
@@ -114,7 +99,7 @@ const LandingPage = ({ variant }) => {
                   ))}
                </DoctorsBox>
                <ButtonBox>
-                  <Button variant="outlined">Все врачи клиники</Button>
+                  <Button variant="outlined">{t('main.allDoctors')}</Button>
                </ButtonBox>
             </MainDoctorsBox>
          </GlobalDoctorContainer>
@@ -162,6 +147,7 @@ const InfoBox = styled('div')(() => ({
    },
    button: {
       borderRadius: '24px',
+      textTransform: 'uppercase',
    },
 }))
 

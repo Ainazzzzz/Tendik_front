@@ -1,16 +1,15 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
-import {
-   Email,
-   HealthCheckIcon,
-   InstagramWhite,
-   LocationIcon,
-   PhoneIcon,
-   TelegramWhite,
-   TimeIcon,
-   WhatsAppWhite,
-} from '../assets'
+import { t } from 'i18next'
+import Logo from '../assets/icons/logo.svg'
+import PhoneIcon from '../assets/icons/phone-outlined1.svg'
+import Email from '../assets/icons/email-outlined.svg'
+import TimeIcon from '../assets/icons/time-outlined.svg'
+import LocationIcon from '../assets/icons/location-outlined.svg'
+import InstagramIcon from '../assets/icons/instagram-icon.svg'
+import TelegramIcon from '../assets/icons/telegram-icon.svg'
+import WhatsappIcon from '../assets/icons/whatsapp-icon.svg'
 
 const Footer = () => {
    return (
@@ -19,74 +18,75 @@ const Footer = () => {
             <InfoBlock>
                <LogoContainer>
                   <NavLink to="/homepage">
-                     <HealthCheckIcon />
+                     <img src={Logo} alt="tendik" />
                   </NavLink>
                </LogoContainer>
-               <span>Медицинская клиника «Tendik»</span>
+               <span>{t('main.medicalClinic')}</span>
                <p>
-                  Международная Медицинская клиника <br /> «Tendik»— это
-                  клиника, в которой применяются <br />
-                  новейшие диагностические и лечебные технологии и<br /> ведут
-                  прием лучшие специалисты.
+                  {t('main.welcomeDescription')} <br />{' '}
+                  {t('main.welcomeDescription2')} <br />
+                  {t('main.welcomeDescription3')}
+                  <br /> {t('main.welcomeDescription4')}
                </p>
             </InfoBlock>
             <InfoBlock>
-               <span>Контактная информация</span>
+               <span>{t('main.contactInformation')}</span>
                <li>
-                  <LocationIcon />
+                  <img src={LocationIcon} alt="location" />
                   <p>106452, г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
-                  <TimeIcon />
+                  <img src={TimeIcon} alt="time" />
                   <p>пн-сб 09:00 до 16:00</p>
                </li>
                <li>
-                  <PhoneIcon />
+                  <img src={PhoneIcon} alt="phone" />
                   <p>
                      +996(770) 503 284
                      <br /> +996(707) 503 284
                   </p>
                </li>
                <li>
-                  <Email />
+                  <img src={Email} alt="email" />
                   <p>tendik.kg</p>
                </li>
             </InfoBlock>
             <InfoBlock>
-               <span>Мы в социальных сетях:</span>
+               <span>{t('main.weAreOnSocialMedia')}</span>
                <SocialLinks>
                   <a
                      href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA=="
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <InstagramWhite />
+                     <img src={InstagramIcon} alt="instagram" />
                   </a>
                   <a
                      href="https://telegram.org/"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <TelegramWhite />
+                     <img src={TelegramIcon} alt="telegram" />
                   </a>
                   <a
                      href="https://whatsapp.com/"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <WhatsAppWhite />
+                     <img src={WhatsappIcon} alt="whatsapp" />
                   </a>
                </SocialLinks>
             </InfoBlock>
          </InfoContainer>
          <Navigations>
-            <NavLink to="/about-clinic">О клинике</NavLink>
-            <NavLink to="/doctors">Врачи</NavLink>
-            <NavLink to="/prices">Прайс</NavLink>
-            <NavLink to="/contacts">Контакты</NavLink>
+            <NavLink to="/aboutClinic">{t('header.aboutClinic')}</NavLink>
+            <NavLink to="/doctors">{t('header.doctors')}</NavLink>
+            <NavLink to="/price">{t('header.price')}</NavLink>
+            <NavLink to="/reviews">{t('header.reviews')}</NavLink>
+            <NavLink to="/contacts">{t('header.contacts')}</NavLink>
          </Navigations>
          <div className="line" />
-         <p>© Peaksoft House 2023 | Tendik | Все права защищены</p>
+         <p>© Peaksoft House 2023 | Tendik | {t('main.allRightsReserved')}</p>
       </FooterContainer>
    )
 }

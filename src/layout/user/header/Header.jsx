@@ -254,10 +254,14 @@ const Header = ({ logoutHandler, variant }) => {
                   <NavlinkStyled to={routes.USER.aboutClinic}>
                      {t('header.aboutClinic')}
                   </NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.doctors}>Врачи</NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.prices}>Прайс</NavlinkStyled>
+                  <NavlinkStyled to={routes.USER.doctors}>
+                     {t('header.doctors')}
+                  </NavlinkStyled>
+                  <NavlinkStyled to={routes.USER.prices}>
+                     {t('header.price')}
+                  </NavlinkStyled>
                   <NavlinkStyled to={routes.USER.contacts}>
-                     Контакты
+                     {t('header.contacts')}
                   </NavlinkStyled>
                </NavList>
                <ContainerButton>
@@ -265,10 +269,10 @@ const Header = ({ logoutHandler, variant }) => {
                      variant="outlined"
                      onClick={navigateToGetResult}
                   >
-                     ПОЛУЧИТЬ РЕЗУЛЬТАТЫ
+                     {t('header.getResult')}
                   </StyledButton>
                   <StyledButton onClick={isDrawerOpenHandler}>
-                     ЗАПИСЬ ОНЛАЙН
+                     {t('header.onlineAppointment')}
                   </StyledButton>
                </ContainerButton>
             </SecondNavStyle>
@@ -379,6 +383,7 @@ const ContainerButton = styled('div')`
    gap: 30px;
 `
 const StyledButton = styled(Button)(() => ({
+   textTransform: 'uppercase',
    borderRadius: '25px',
    '&:hover': { borderRadius: '25px' },
    '&:active': { borderRadius: '25px' },

@@ -12,6 +12,7 @@ import {
 import { styled } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { t } from 'i18next'
 import Button from './UI/Button'
 import { ButtonIcon, CloseIcon, Phone, Users } from '../assets'
 import { addApplications } from '../store/applications/applicationsThunk'
@@ -53,29 +54,35 @@ export const ApplicationModal = ({ onClose }) => {
          </CloseIconStyleContianer>
          {successfulSent ? (
             <SuccessSmsBox>
-               <DialogTitleStyled>Заявка успешно отправлена!</DialogTitleStyled>
+               <DialogTitleStyled>
+                  {t('main.successfullySubmitted')}
+               </DialogTitleStyled>
                <DialogContentTextStyled>
-                  В ближайшее время с вами свяжется администратор <br />
-                  для согласования деталей.
+                  {t('main.administratorWillContactYou')}
+                  <br />
+                  {t('main.coordinate')}
                </DialogContentTextStyled>
             </SuccessSmsBox>
          ) : (
             <>
-               <DialogTitleStyled>Оставьте заявку</DialogTitleStyled>
+               <DialogTitleStyled>{t('main.leaveRequest')}</DialogTitleStyled>
                <DialogContent>
                   <DialogContentTextStyled>
-                     Оставьте свой номер и наши специалисты свяжутся с Вами
-                     <br /> в ближайшее время
+                     {t('main.leaveRequestDescription')}
+                     <br /> {t('main.comingSoon')}
                   </DialogContentTextStyled>
                   <InputBoxStyled>
                      <div>
-                        <FormLabelStyled>Как к Вам обратиться?</FormLabelStyled>
+                        <FormLabelStyled>
+                           {' '}
+                           {t('main.howCanIContactYou')}
+                        </FormLabelStyled>
                         <TextFieldStyled
                            margin="dense"
                            id="name"
                            type="text"
                            variant="outlined"
-                           placeholder="Введите имя"
+                           placeholder={t('main.writeName')}
                            onChange={nameChangeHandler}
                            value={name}
                            InputProps={{
@@ -89,7 +96,7 @@ export const ApplicationModal = ({ onClose }) => {
                      </div>
                      <div>
                         <FormLabelStyled>
-                           Номер мобильного телефона
+                           {t('main.phoneNumber')}
                         </FormLabelStyled>
                         <TextFieldStyled
                            id="name"
@@ -116,7 +123,7 @@ export const ApplicationModal = ({ onClose }) => {
                      variant="contained"
                      onClick={submitHandler}
                   >
-                     <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+                     <span>{t('main.sendRequest')}</span>
                      <ButtonIconStyle disabled={disabledInfo} />
                   </ButtonStyle>
                </ButtonContainer>
@@ -198,6 +205,7 @@ const ButtonStyle = styled(Button)(() => ({
       padding: '10px 12px 10px 24px',
       span: {
          marginRight: '16px',
+         textTrasform: 'uppercase',
       },
    },
 }))

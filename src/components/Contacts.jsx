@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { Breadcrumbs } from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { t } from 'i18next'
 import Map from './Map'
 
 const Contacts = () => {
@@ -19,29 +20,26 @@ const Contacts = () => {
                </Container>
             </Stack>
             <Titl>
-               Наши <span style={{ color: '#048741' }}>контакты</span>
+               {t('main.our')}{' '}
+               <span style={{ color: '#048741' }}>{t('main.contacts')}</span>
             </Titl>
-            <Title>
-               Комфорт и спокойствие пациента — это часть качественного лечения!
-               Предупредите администратора, что вы едете к нам на машине и мы
-               предложим бесплатную подземную парковку при нашей клинике.
-            </Title>
+            <Title>{t('main.ourContactsDescription')}</Title>
             <ContainerInfo>
-               <ContactInfo>Контактные номера:</ContactInfo>
+               <ContactInfo>{t('main.contactNumbers')}</ContactInfo>
                <ContactInfoP>+996(770) 503 284; +996(707) 503 284</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>Наш адрес:</ContactInfo>
+               <ContactInfo>{t('main.ourAddress')}</ContactInfo>
                <ContactInfoP>Кыргызстан, г. Бишкек, Тендик 4/1</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>Режим работы клиники:</ContactInfo>
+               <ContactInfo>{t('main.clinicWorkingHours')}</ContactInfo>
                <ContactInfoP>
                   Понедельник - суббота с 09:00 до 16:00.
                </ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>Электронная почта :</ContactInfo>
+               <ContactInfo>{t('main.email')}</ContactInfo>
                <ContactInfoP> tendik.kg</ContactInfoP>
             </ContainerInfo>
          </Wrapper>

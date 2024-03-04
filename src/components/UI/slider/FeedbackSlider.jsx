@@ -1,5 +1,6 @@
 import { Rating, styled } from '@mui/material'
 import Slider from 'react-slick'
+import { t } from 'i18next'
 import ImgSlider from '../../../assets/images/imgSlider.png'
 import { Pagination, NextImg, PreviousImg } from '../../../assets'
 
@@ -57,7 +58,8 @@ export const FeedbackSlider = () => {
    return (
       <>
          <StyledInfo>
-            Отзывы наших <span> пациентов</span>
+            {t('main.feedbackOur')}
+            <span> {t('main.ourPatients')}</span>
          </StyledInfo>
          <MainContainer>
             <StyledSlider {...settings}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
+import { t } from 'i18next'
 import Button from './UI/Button'
 
 import {
@@ -17,46 +18,19 @@ const AboutClinicLayout = ({ variant, onClick }) => {
          <StyledMainBlock>
             <StyledAboutSecondText>
                <StyledTitleText>
-                  О нашей клинике
+                  {t('main.aboutOutClinic')}
                   <span> “Tendik”</span>
                </StyledTitleText>
-               <p>
-                  Вся наша команда готова обеспечить вам медицинский уход
-                  <br /> и заботу на самом высоком уровне. Наша главная задача —
-                  оказать <br /> Вам теплый прием и обеспечить самый лучший
-                  медицинский уход. <br /> У нас Вы в хороших руках! В нашей
-                  клинике используются только <br />
-                  качественные материалы и проверенные технологии. Для каждого
-                  <br />
-                  клиента специалисты нашей клиники разработают <br />
-                  индивидуальный план лечения, подробно рассказывая о каждом
-                  <br /> этапе.
-               </p>
-               <p>
-                  Доброжелательность и уважительное отношение к пациентам,
-                  <br /> не только материальная, но и моральная ответственность
-                  <br /> за результаты лечения — все это взято за основу
-                  политики Medical <br /> Clinic. Профессионализм и высокое
-                  качество оказываемых услуг
-                  <br />
-                  помогают нам привлечь пациентов которые рекомендуют нас
-                  <br /> своим родным и близким.
-               </p>
-               <p>
-                  Уже 20 лет мы работаем на уровне лучших мировых стандартов,
-                  <br />
-                  внедряя и развивая передовые методы лечения для сохранения
-                  <br />
-                  здоровья наших пациентов.
-               </p>
-
+               <p>{t('main.firstDescription')}</p>
+               <p>{t('main.secondDescription')}</p>
+               <p>{t('main.thirdDescription')}</p>
                {variant === 'button' ? (
                   <StyledButton variant="outlined" onClick={onClick}>
-                     Записаться на консультацию
+                     {t('main.makeAnСonsultation')}
                   </StyledButton>
                ) : (
                   <StyledNavlink to="about">
-                     Читать подробнее o клинике <ForwardVector />
+                     {t('main.learnMore')} <ForwardVector />
                   </StyledNavlink>
                )}
             </StyledAboutSecondText>
