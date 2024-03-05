@@ -181,7 +181,6 @@ export const AdminAppointmentsPage = () => {
          id: 'phoneNumber',
          label: 'Номер телефона',
       },
-      { id: 'email', label: 'Почта' },
       {
          id: 'position',
          label: 'Выбор услуги',
