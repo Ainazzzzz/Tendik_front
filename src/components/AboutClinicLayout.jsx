@@ -61,7 +61,7 @@ const AboutClinicLayout = ({ variant, onClick }) => {
                )}
             </StyledAboutSecondText>
             <StyledImageBlock>
-               <StyledBuildingImG src={Building} alt="" />
+               <StyledBuildingImG src={Building} alt="building" />
 
                <StyledSlidingImG>
                   <StyledBuildingImG src={Conference} alt="conference" />
