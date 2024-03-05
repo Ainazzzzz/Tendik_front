@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
 import { Box } from '@mui/material'
+import { t } from 'i18next'
 import { DoctorImg, Rectange, Signature } from '../assets'
 import AboutClinicLayout from './AboutClinicLayout'
 
@@ -18,8 +19,11 @@ const AboutHealth = () => {
                   </p>
                </NavigatePathTitle>
                <StyledTitleSubject>
-                  Здоровье — самое
-                  <span style={{ color: '#048741' }}> ценное в жизни</span>
+                  {t('main.healthIst')}
+                  <span style={{ color: '#048741' }}>
+                     {' '}
+                     {t('main.valueableInLive')}
+                  </span>
                </StyledTitleSubject>
                <StyledMainContainer>
                   <StyledAboutText>

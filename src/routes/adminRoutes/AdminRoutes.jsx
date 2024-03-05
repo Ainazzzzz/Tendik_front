@@ -37,6 +37,7 @@ const AdminRoutes = () => {
          navigate('/online-registration')
       }
    }, [])
+
    return (
       <>
          <Header logoutHandler={logoutHandler} />

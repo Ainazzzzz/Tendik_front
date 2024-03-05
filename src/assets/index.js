@@ -116,6 +116,3 @@ export { default as DoctorAntux } from './images/doctore-antux.png'
 export { default as DoctorMisnik } from './images/doctor-misnik.png'
 export { default as DoctorDmitryi } from './images/dmitryiImage.png'
 export { default as Stotoskop } from './images/Stotoskop.png'
-
-export { default as MamaBoy } from './images/Rory giving kid neb.jpg'
-export { default as DoctorRengen } from './images/IMG_2865.jpg'
