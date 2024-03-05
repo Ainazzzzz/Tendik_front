@@ -34,9 +34,7 @@ const Contacts = () => {
             </ContainerInfo>
             <ContainerInfo>
                <ContactInfo>Наш адрес:</ContactInfo>
-               <ContactInfoP>
-                  Кыргызстан, г. Бишкек, Гражданская 119
-               </ContactInfoP>
+               <ContactInfoP>г. Бишкек, Тендик 4/1</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
                <ContactInfo>Режим работы клиники:</ContactInfo>
