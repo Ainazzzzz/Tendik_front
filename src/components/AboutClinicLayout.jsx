@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import Button from './UI/Button'
-
 import {
    Building,
    Conference,
@@ -13,24 +12,25 @@ import {
 } from '../assets'
 
 const AboutClinicLayout = ({ variant, onClick }) => {
+   const { i18n } = useTranslation()
    return (
       <Block>
          <StyledMainBlock>
             <StyledAboutSecondText>
                <StyledTitleText>
-                  {t('main.aboutOutClinic')}
+                  {i18n.t('main.aboutOutClinic')}
                   <span> “Tendik”</span>
                </StyledTitleText>
-               <p>{t('main.firstDescription')}</p>
-               <p>{t('main.secondDescription')}</p>
-               <p>{t('main.thirdDescription')}</p>
+               <p>{i18n.t('main.firstDescription')}</p>
+               <p>{i18n.t('main.secondDescription')}</p>
+               <p>{i18n.t('main.thirdDescription')}</p>
                {variant === 'button' ? (
                   <StyledButton variant="outlined" onClick={onClick}>
-                     {t('main.makeAnСonsultation')}
+                     {i18n.t('main.makeAnСonsultation')}
                   </StyledButton>
                ) : (
                   <StyledNavlink to="about">
-                     {t('main.learnMore')} <ForwardVector />
+                     {i18n.t('main.learnMore')} <ForwardVector />
                   </StyledNavlink>
                )}
             </StyledAboutSecondText>

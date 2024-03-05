@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from '@emotion/styled'
 import { Breadcrumbs, Stack } from '@mui/material'
 import { NavLink } from 'react-router-dom'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import DoctorCard from '../../components/UI/DoctorCard'
 import { fetchDoctors } from '../../store/doctors/doctorsThunk'
 
 const Doctors = () => {
+   const { i18n } = useTranslation()
+
    const { doctors } = useSelector((state) => state.doctors)
    const [showAllDepartments, setShowAllDepartments] = useState(false)
 
@@ -46,19 +48,19 @@ const Doctors = () => {
          <Stack spacing={2}>
             <Container separator="›" aria-label="breadcrumb">
                <StyledNavLink to="/">
-                  <p>Главная</p>
+                  <p>{i18n.t('main.main')}</p>
                </StyledNavLink>
-               <p>Врачи</p>
+               <p>{i18n.t('header.doctors')}</p>
             </Container>
          </Stack>
          <Titl>
-            {t('main.our')}
-            <span style={{ color: '#048741' }}> {t('main.doctors')}</span>
+            {i18n.t('main.our')}
+            <span style={{ color: '#048741' }}> {i18n.t('main.doctors')}</span>
          </Titl>
-         <p className="text">{t('main.ourDoctorsFirstDescription')}</p>
+         <p className="text">{i18n.t('main.ourDoctorsFirstDescription')}</p>
          <p className="text">
-            {t('main.ourDoctorsSecondDscription')} <br />
-            {t('main.ourDoctorsSecond')}
+            {i18n.t('main.ourDoctorsSecondDscription')} <br />
+            {i18n.t('main.ourDoctorsSecond')}
          </p>
 
          <StyledDoctorsInnerContainer>
@@ -73,14 +75,15 @@ const Doctors = () => {
                </div>
             ))}
             <StyledSpan>
-               {t('main.ourClinicDoctors')} <b>{t('moreDoctors')}</b>
+               {i18n.t('main.ourClinicDoctors')}{' '}
+               <b>{i18n.t('main.moreDoctors')}</b>
                {!showAllDepartments ? (
                   <StyledButton onClick={handleShowMoreClick}>
-                     {t('main.readMore')}
+                     {i18n.t('main.readMore')}
                   </StyledButton>
                ) : (
                   <StyledButton onClick={handleShowLessClick}>
-                     {t('main.showLess')}
+                     {i18n.t('main.showLess')}
                   </StyledButton>
                )}
             </StyledSpan>

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { FormLabel, IconButton, InputAdornment } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInWithPopup } from 'firebase/auth'
 import { PulseLoader } from 'react-spinners'
-import { GoogleIcon, Show, ShowOff } from '../../assets'
+import { Show, ShowOff } from '../../assets'
 import Modal from '../../components/UI/Modal'
 import Button from '../../components/UI/Button'
 import { Input } from '../../components/UI/input/Input'
-import { authWithGoogle, signUp } from '../../store/auth/authThunk'
+import { signUp } from '../../store/auth/authThunk'
 import { notify } from '../../utils/constants/snackbar'
-import { auth, provider } from '../../store/auth/firebase'
 import { localStorageKeys } from '../../utils/constants/constants'
 
 const SignUp = ({ open, setOpen, navigateToSignIn }) => {
@@ -68,18 +66,6 @@ const SignUp = ({ open, setOpen, navigateToSignIn }) => {
       } else {
          notify('Пароли не совпадают', 'error')
       }
-   }
-
-   const handleAuthWithGoogle = () => {
-      signInWithPopup(auth, provider)
-         .then((data) => {
-            const userToken = data.user.accessToken
-            return userToken
-         })
-         .then((token) => {
-            dispatch(authWithGoogle({ token, navigate }))
-            handleClose()
-         })
    }
 
    const handleKeyPress = (e) => {
@@ -245,15 +231,6 @@ const SignUp = ({ open, setOpen, navigateToSignIn }) => {
                <span>или</span>
                <hr className="lineSecond" />
             </Line>
-            <Button
-               className="buttonGoogle"
-               startIcon={<GoogleIcon />}
-               onClick={handleAuthWithGoogle}
-            >
-               <NavLink to="/" className="google">
-                  Зарегистрироваться с Google
-               </NavLink>
-            </Button>
             <div className="register">
                <span>У вас уже есть аккаунт?</span>
                <Link to="/" onClick={navigateToSignIn}>

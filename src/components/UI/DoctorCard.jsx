@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 import Button from './Button'
 
 export default function DoctorCard({ doctor }) {
    const { id, image, firstName, lastName, position } = doctor
+   const { i18n } = useTranslation()
    return (
       <Container>
          <div key={id}>
@@ -18,7 +20,7 @@ export default function DoctorCard({ doctor }) {
                {position}
             </Link>
             <Button variant="outlined" type="submit">
-               Записаться на прием
+               {i18n.t('main.makeAnAppointment')}
             </Button>
          </div>
       </Container>

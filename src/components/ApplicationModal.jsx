@@ -12,7 +12,7 @@ import {
 import { styled } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import Button from './UI/Button'
 import { ButtonIcon, CloseIcon, Phone, Users } from '../assets'
 import { addApplications } from '../store/applications/applicationsThunk'
@@ -24,6 +24,8 @@ export const ApplicationModal = ({ onClose }) => {
    const [name, setName] = useState('')
    const [number, setNumber] = useState('')
    const [successfulSent, setSuccessfulSent] = useState(false)
+
+   const { i18n } = useTranslation()
 
    const disabledInfo = name && number
    const nameChangeHandler = (e) => {
@@ -55,34 +57,36 @@ export const ApplicationModal = ({ onClose }) => {
          {successfulSent ? (
             <SuccessSmsBox>
                <DialogTitleStyled>
-                  {t('main.successfullySubmitted')}
+                  {i18n.t('main.successfullySubmitted')}
                </DialogTitleStyled>
                <DialogContentTextStyled>
-                  {t('main.administratorWillContactYou')}
+                  {i18n.t('main.administratorWillContactYou')}
                   <br />
-                  {t('main.coordinate')}
+                  {i18n.t('main.coordinate')}
                </DialogContentTextStyled>
             </SuccessSmsBox>
          ) : (
             <>
-               <DialogTitleStyled>{t('main.leaveRequest')}</DialogTitleStyled>
+               <DialogTitleStyled>
+                  {i18n.t('main.leaveRequest')}
+               </DialogTitleStyled>
                <DialogContent>
                   <DialogContentTextStyled>
-                     {t('main.leaveRequestDescription')}
-                     <br /> {t('main.comingSoon')}
+                     {i18n.t('main.leaveRequestDescription')}
+                     <br /> {i18n.t('main.comingSoon')}
                   </DialogContentTextStyled>
                   <InputBoxStyled>
                      <div>
                         <FormLabelStyled>
                            {' '}
-                           {t('main.howCanIContactYou')}
+                           {i18n.t('main.howCanIContactYou')}
                         </FormLabelStyled>
                         <TextFieldStyled
                            margin="dense"
                            id="name"
                            type="text"
                            variant="outlined"
-                           placeholder={t('main.writeName')}
+                           placeholder={i18n.t('main.writeName')}
                            onChange={nameChangeHandler}
                            value={name}
                            InputProps={{
@@ -96,7 +100,7 @@ export const ApplicationModal = ({ onClose }) => {
                      </div>
                      <div>
                         <FormLabelStyled>
-                           {t('main.phoneNumber')}
+                           {i18n.t('main.phoneNumber')}
                         </FormLabelStyled>
                         <TextFieldStyled
                            id="name"
@@ -123,7 +127,7 @@ export const ApplicationModal = ({ onClose }) => {
                      variant="contained"
                      onClick={submitHandler}
                   >
-                     <span>{t('main.sendRequest')}</span>
+                     <span>{i18n.t('main.sendRequest')}</span>
                      <ButtonIconStyle disabled={disabledInfo} />
                   </ButtonStyle>
                </ButtonContainer>

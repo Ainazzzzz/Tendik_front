@@ -3,43 +3,47 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { Breadcrumbs } from '@mui/material'
 import { NavLink } from 'react-router-dom'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import Map from './Map'
 
 const Contacts = () => {
    window.scrollTo({ top: 0 })
+
+   const { i18n } = useTranslation()
    return (
       <div>
          <Wrapper>
             <Stack spacing={2}>
                <Container separator="›" aria-label="breadcrumb">
                   <StyledNavLink to="/">
-                     <p>Главная</p>
+                     <p>{i18n.t('main.main')}</p>
                   </StyledNavLink>
-                  <p>Контакты</p>
+                  <p>{i18n.t('header.contacts')}</p>
                </Container>
             </Stack>
             <Titl>
-               {t('main.our')}{' '}
-               <span style={{ color: '#048741' }}>{t('main.contacts')}</span>
+               {i18n.t('main.our')}{' '}
+               <span style={{ color: '#048741' }}>
+                  {i18n.t('main.contacts')}
+               </span>
             </Titl>
-            <Title>{t('main.ourContactsDescription')}</Title>
+            <Title>{i18n.t('main.ourContactsDescription')}</Title>
             <ContainerInfo>
-               <ContactInfo>{t('main.contactNumbers')}</ContactInfo>
+               <ContactInfo>{i18n.t('main.contactNumbers')}</ContactInfo>
                <ContactInfoP>+996(770) 503 284; +996(707) 503 284</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>{t('main.ourAddress')}</ContactInfo>
+               <ContactInfo>{i18n.t('main.ourAddress')}</ContactInfo>
                <ContactInfoP>Кыргызстан, г. Бишкек, Тендик 4/1</ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>{t('main.clinicWorkingHours')}</ContactInfo>
+               <ContactInfo>{i18n.t('main.clinicWorkingHours')}</ContactInfo>
                <ContactInfoP>
                   Понедельник - суббота с 09:00 до 16:00.
                </ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>{t('main.email')}</ContactInfo>
+               <ContactInfo>{i18n.t('main.email')}</ContactInfo>
                <ContactInfoP> tendik.kg</ContactInfoP>
             </ContainerInfo>
          </Wrapper>

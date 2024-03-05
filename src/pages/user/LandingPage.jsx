@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
-import { t } from 'i18next'
 import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
@@ -40,9 +39,9 @@ const LandingPage = ({ variant }) => {
                         }
                         alt="welcomeWord"
                      />
-                     <p>{t('main.welcomeDescription')}</p>
+                     <p>{i18n.t('main.welcomeDescription')}</p>
                      <Button variant="outlined" onClick={showModalHandler}>
-                        {t('main.leaveRequest')}
+                        {i18n.t('main.leaveRequest')}
                      </Button>
                      <BasicModalStyle
                         open={showApplicationModal}
@@ -55,24 +54,24 @@ const LandingPage = ({ variant }) => {
                </Box>
                <DetailsBox>
                   <h1>
-                     {t('main.why')}
-                     <span> {t('main.whyAreWeBeingChosen')}</span>
+                     {i18n.t('main.why')}
+                     <span> {i18n.t('main.whyAreWeBeingChosen')}</span>
                   </h1>
                   <MainInfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>1</span>
-                        <h3>{t('main.firstAnswerTitle')}</h3>
-                        <p>{t('main.firstAnswer')}</p>
+                        <h3>{i18n.t('main.firstAnswerTitle')}</h3>
+                        <p>{i18n.t('main.firstAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>2</span>
-                        <h3>{t('main.secondAnswerTitle')}</h3>
-                        <p>{t('main.secondAnswer')}</p>
+                        <h3>{i18n.t('main.secondAnswerTitle')}</h3>
+                        <p>{i18n.t('main.secondAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>3</span>
-                        <h3>{t('main.thirdAnswerTitle')}</h3>
-                        <p>{t('main.thirdAnswer')}</p>
+                        <h3>{i18n.t('main.thirdAnswerTitle')}</h3>
+                        <p>{i18n.t('main.thirdAnswer')}</p>
                      </InfoDepartmentBox>
                   </MainInfoDepartmentBox>
                </DetailsBox>
@@ -82,9 +81,9 @@ const LandingPage = ({ variant }) => {
          <GlobalDoctorContainer>
             <MainDoctorsBox>
                <h1>
-                  {t('main.best')} <span>{t('main.doctors')}</span>
+                  {i18n.t('main.best')} <span>{i18n.t('main.doctors')}</span>
                </h1>
-               <TitleStyle>{t('main.bestDoctorsDescription')}</TitleStyle>
+               <TitleStyle>{i18n.t('main.bestDoctorsDescription')}</TitleStyle>
                <DoctorsBox>
                   {BEST_DOCTORS_IMAGES.map((doctor) => (
                      <DoctorBox key={doctor.id}>
@@ -99,7 +98,9 @@ const LandingPage = ({ variant }) => {
                   ))}
                </DoctorsBox>
                <ButtonBox>
-                  <Button variant="outlined">{t('main.allDoctors')}</Button>
+                  <Button variant="outlined">
+                     {i18n.t('main.allDoctors')}
+                  </Button>
                </ButtonBox>
             </MainDoctorsBox>
          </GlobalDoctorContainer>

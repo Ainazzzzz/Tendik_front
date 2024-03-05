@@ -4,7 +4,6 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { t } from 'i18next'
 import Button from '../../../components/UI/Button'
 import { Input } from '../../../components/UI/input/Input'
 import {
@@ -252,16 +251,16 @@ const Header = ({ logoutHandler, variant }) => {
                </StyleCheck>
                <NavList>
                   <NavlinkStyled to={routes.USER.aboutClinic}>
-                     {t('header.aboutClinic')}
+                     {i18n.t('header.aboutClinic')}
                   </NavlinkStyled>
                   <NavlinkStyled to={routes.USER.doctors}>
-                     {t('header.doctors')}
+                     {i18n.t('header.doctors')}
                   </NavlinkStyled>
                   <NavlinkStyled to={routes.USER.prices}>
-                     {t('header.price')}
+                     {i18n.t('header.price')}
                   </NavlinkStyled>
                   <NavlinkStyled to={routes.USER.contacts}>
-                     {t('header.contacts')}
+                     {i18n.t('header.contacts')}
                   </NavlinkStyled>
                </NavList>
                <ContainerButton>
@@ -269,10 +268,10 @@ const Header = ({ logoutHandler, variant }) => {
                      variant="outlined"
                      onClick={navigateToGetResult}
                   >
-                     {t('header.getResult')}
+                     {i18n.t('header.getResult')}
                   </StyledButton>
                   <StyledButton onClick={isDrawerOpenHandler}>
-                     {t('header.onlineAppointment')}
+                     {i18n.t('header.onlineAppointment')}
                   </StyledButton>
                </ContainerButton>
             </SecondNavStyle>

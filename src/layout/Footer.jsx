@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
-import { t } from 'i18next'
-import Logo from '../assets/icons/logo.svg'
+import { useTranslation } from 'react-i18next'
 import PhoneIcon from '../assets/icons/phone-outlined1.svg'
 import Email from '../assets/icons/email-outlined.svg'
 import TimeIcon from '../assets/icons/time-outlined.svg'
@@ -10,27 +9,29 @@ import LocationIcon from '../assets/icons/location-outlined.svg'
 import InstagramIcon from '../assets/icons/instagram-icon.svg'
 import TelegramIcon from '../assets/icons/telegram-icon.svg'
 import WhatsappIcon from '../assets/icons/whatsapp-icon.svg'
+import { HealthCheckIcon } from '../assets'
 
 const Footer = () => {
+   const { i18n } = useTranslation()
    return (
       <FooterContainer>
          <InfoContainer>
             <InfoBlock>
                <LogoContainer>
                   <NavLink to="/homepage">
-                     <img src={Logo} alt="tendik" />
+                     <HealthCheckIcon />
                   </NavLink>
                </LogoContainer>
-               <span>{t('main.medicalClinic')}</span>
+               <span>{i18n.t('main.medicalClinic')}</span>
                <p>
-                  {t('main.welcomeDescription')} <br />{' '}
-                  {t('main.welcomeDescription2')} <br />
-                  {t('main.welcomeDescription3')}
-                  <br /> {t('main.welcomeDescription4')}
+                  {i18n.t('main.welcomeDescription')} <br />{' '}
+                  {i18n.t('main.welcomeDescription2')} <br />
+                  {i18n.t('main.welcomeDescription3')}
+                  <br /> {i18n.t('main.welcomeDescription4')}
                </p>
             </InfoBlock>
             <InfoBlock>
-               <span>{t('main.contactInformation')}</span>
+               <span>{i18n.t('main.contactInformation')}</span>
                <li>
                   <img src={LocationIcon} alt="location" />
                   <p>106452, г. Бишкек, Тендик 4/1</p>
@@ -52,7 +53,7 @@ const Footer = () => {
                </li>
             </InfoBlock>
             <InfoBlock>
-               <span>{t('main.weAreOnSocialMedia')}</span>
+               <span>{i18n.t('main.weAreOnSocialMedia')}</span>
                <SocialLinks>
                   <a
                      href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA=="
@@ -79,14 +80,16 @@ const Footer = () => {
             </InfoBlock>
          </InfoContainer>
          <Navigations>
-            <NavLink to="/aboutClinic">{t('header.aboutClinic')}</NavLink>
-            <NavLink to="/doctors">{t('header.doctors')}</NavLink>
-            <NavLink to="/price">{t('header.price')}</NavLink>
-            <NavLink to="/reviews">{t('header.reviews')}</NavLink>
-            <NavLink to="/contacts">{t('header.contacts')}</NavLink>
+            <NavLink to="/aboutClinic">{i18n.t('header.aboutClinic')}</NavLink>
+            <NavLink to="/doctors">{i18n.t('headerdoctors')}</NavLink>
+            <NavLink to="/price">{i18n.t('headerprice')}</NavLink>
+            <NavLink to="/reviews">{i18n.t('main.reviews')}</NavLink>
+            <NavLink to="/contacts">{i18n.t('headercontacts')}</NavLink>
          </Navigations>
          <div className="line" />
-         <p>© Peaksoft House 2023 | Tendik | {t('main.allRightsReserved')}</p>
+         <p>
+            © Peaksoft House 2023 | Tendik | {i18n.t('main.allRightsReserved')}
+         </p>
       </FooterContainer>
    )
 }

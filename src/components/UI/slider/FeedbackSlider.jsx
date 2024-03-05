@@ -1,6 +1,6 @@
 import { Rating, styled } from '@mui/material'
 import Slider from 'react-slick'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import ImgSlider from '../../../assets/images/imgSlider.png'
 import { Pagination, NextImg, PreviousImg } from '../../../assets'
 
@@ -43,6 +43,7 @@ const customDots = (dots) => <div>{dots}</div>
 const customPaging = () => <Pagination />
 
 export const FeedbackSlider = () => {
+   const { i18n } = useTranslation()
    const settings = {
       autoplay: true,
       dots: true,
@@ -58,8 +59,8 @@ export const FeedbackSlider = () => {
    return (
       <>
          <StyledInfo>
-            {t('main.feedbackOur')}
-            <span> {t('main.ourPatients')}</span>
+            {i18n.t('main.feedbackOur')}
+            <span> {i18n.t('main.ourPatients')}</span>
          </StyledInfo>
          <MainContainer>
             <StyledSlider {...settings}>

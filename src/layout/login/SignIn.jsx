@@ -4,16 +4,13 @@ import styled from '@emotion/styled'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInWithPopup } from 'firebase/auth'
 import { PulseLoader } from 'react-spinners'
 import Modal from '../../components/UI/Modal'
 import { Input } from '../../components/UI/input/Input'
 import Button from '../../components/UI/Button'
-import { authWithGoogle, signIn } from '../../store/auth/authThunk'
-import { auth, provider } from '../../store/auth/firebase'
-import { notify } from '../../utils/constants/snackbar'
+import { signIn } from '../../store/auth/authThunk'
 import { localStorageKeys } from '../../utils/constants/constants'
-import { GoogleIcon, Show, ShowOff } from '../../assets'
+import { Show, ShowOff } from '../../assets'
 
 const SignIn = ({
    open,
@@ -57,25 +54,6 @@ const SignIn = ({
       )
       values.phoneNumber = ''
       values.password = ''
-   }
-
-   const handleAuthWithGoogle = () => {
-      signInWithPopup(auth, provider)
-         .then((data) => {
-            const userToken = data.user.accessToken
-            return userToken
-         })
-         .then((token) => {
-            dispatch(authWithGoogle({ token, navigate }))
-            handleClose()
-         })
-         .catch((error) => {
-            if (error.code === 'auth/cancelled-popup-request') {
-               notify('Вы отменили запрос на всплывающее окно', 'error')
-            } else {
-               notify('Произошла ошибка при аутентификации с Google', 'error')
-            }
-         })
    }
 
    useEffect(() => {
@@ -159,15 +137,6 @@ const SignIn = ({
                <span>или</span>
                <hr className="lineSecond" />
             </Line>
-            <Button
-               className="buttonGoogle"
-               startIcon={<GoogleIcon />}
-               onClick={handleAuthWithGoogle}
-            >
-               <NavLink to="/" className="google">
-                  Продолжить с Google
-               </NavLink>
-            </Button>
             <div className="register">
                <span>Нет аккаунта? </span>
                <Link to="/" onClick={navigateToSignUp}>

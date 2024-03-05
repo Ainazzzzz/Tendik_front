@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { FormLabel, InputAdornment } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import PhotoWoman from '../assets/images/applicationform-woman.png'
 import Button from './UI/Button'
 import { UserIcon, PhoneIcon, ArrowIcon } from '../assets'
@@ -19,6 +19,8 @@ const ApplicationForm = () => {
       name: '',
       phoneNumber: '',
    })
+
+   const { i18n } = useTranslation()
 
    const dispatch = useDispatch()
 
@@ -80,10 +82,10 @@ const ApplicationForm = () => {
    return (
       <ApplicationFormContainer>
          <ApplicationFormInnerContainer>
-            <h2>{t('main.leaveRequest')}</h2>
+            <h2>{i18n.t('main.leaveRequest')}</h2>
             <p>
-               {t('main.leaveRequestDescription')}
-               <br /> {t('main.comingSoon')}
+               {i18n.t('main.leaveRequestDescription')}
+               <br /> {i18n.t('main.comingSoon')}
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -108,7 +110,7 @@ const ApplicationForm = () => {
                   <span className="error-message">{errors.name}</span>
                </div>
                <div>
-                  <FormLabel>{t('main.phoneNumber')}</FormLabel>
+                  <FormLabel>{i18n.t('main.phoneNumber')}</FormLabel>
                   <Input
                      className="input-container"
                      InputProps={{
@@ -129,7 +131,7 @@ const ApplicationForm = () => {
                </div>
             </form>
             <StyledButton type="submit" onClick={handleSubmit}>
-               {t('main.sendRequest')} <ArrowIcon className="arrow-icon" />
+               {i18n.t('main.sendRequest')} <ArrowIcon className="arrow-icon" />
             </StyledButton>
          </ApplicationFormInnerContainer>
          <img src={PhotoWoman} alt="" />
