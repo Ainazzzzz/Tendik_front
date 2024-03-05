@@ -171,7 +171,7 @@ const Header = ({ logoutHandler, variant }) => {
                <div className="containerInfo">
                   <div className="address">
                      <LocationsIcon />
-                     <h3>106452, г. Бишкек, Гражданская 119</h3>
+                     <h3>г. Бишкек, Тендик 4/1</h3>
                   </div>
                   <div className="workingHours">
                      <ScheduleIcon />
@@ -194,7 +194,7 @@ const Header = ({ logoutHandler, variant }) => {
                   }}
                />
                <ContainerIcons>
-                  <a href="https://www.instagram.com">
+                  <a href="https://www.instagram.com/tendikproject">
                      <InstagramIcon />
                   </a>
                   <a href="https://web.telegram.org/k/#-4032240673">

@@ -55,7 +55,7 @@ const Footer = () => {
                <span>Мы в социальных сетях:</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.instagram.com/tendikproject"
                      target="_blank"
                      rel="noreferrer"
                   >

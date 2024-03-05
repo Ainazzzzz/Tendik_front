@@ -32,7 +32,7 @@ const Footer = () => {
                <span>Контактная информация</span>
                <li>
                   <img src={LocationIcon} alt="location" />
-                  <p>106452, г. Бишкек, Гражданская 119</p>
+                  <p>г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
                   <img src={TimeIcon} alt="time" />
@@ -53,7 +53,7 @@ const Footer = () => {
                <span>Мы в социальных сетях:</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.instagram.com/tendikproject"
                      target="_blank"
                      rel="noreferrer"
                   >
