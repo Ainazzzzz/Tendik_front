@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
@@ -98,9 +100,11 @@ const LandingPage = ({ variant }) => {
                   ))}
                </DoctorsBox>
                <ButtonBox>
-                  <Button variant="outlined">
-                     {i18n.t('main.allDoctors')}
-                  </Button>
+                  <Link to="/doctors">
+                     <Button variant="outlined">
+                        {i18n.t('main.allDoctors')}
+                     </Button>
+                  </Link>
                </ButtonBox>
             </MainDoctorsBox>
          </GlobalDoctorContainer>

@@ -205,7 +205,7 @@ const Header = ({ logoutHandler, variant }) => {
                   }}
                />
                <ContainerIcons>
-                  <a href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA==">
+                  <a href="https://www.instagram.com/tendikproject">
                      <InstagramIcon />
                   </a>
                   <a href="https://web.telegram.org/k/#-4032240673">

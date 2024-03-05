@@ -14,11 +14,11 @@ const ConfirmModal = ({ handleClose, appointmentData, goBack }) => {
    const dispatch = useDispatch()
 
    const handleCancel = () => {
-      dispatch(
-         cancelAppointment({ appointmentId: appointmentData.appointmentId })
-      ).then(() => {
-         setCancelSuccess(true)
-      })
+      dispatch(cancelAppointment({ appointmentId: appointmentData.id })).then(
+         () => {
+            setCancelSuccess(true)
+         }
+      )
    }
 
    return (
