@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { Controller, useForm } from 'react-hook-form'
@@ -7,7 +7,6 @@ import { format } from 'date-fns'
 import Modal from '../../components/UI/Modal'
 import { SelectUI } from '../../components/UI/Select'
 import DatePicker from '../../components/UI/DatePicker'
-import TimePicker from '../../components/UI/TimePicker'
 import {
    DEPARTMENTS,
    INTERVAL_IN_MINUTES,
@@ -20,36 +19,50 @@ import {
 } from '../../store/appointments/adminAppointmentsThunk'
 import Button from '../../components/UI/Button'
 import { notify } from '../../utils/constants/snackbar'
-import { DAYS, RUSSIAN_DAYS } from '../../utils/constants/commons'
+import { axiosInstance } from '../../config/axiosInstance'
+import { Input } from '../../components/UI/input/Input'
 
-export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
+export const ModalAppointents = ({ open, onClose, setIsModalOpen }) => {
    const { doctors } = useSelector((state) => state.appointmentsAdmin)
    const dispatch = useDispatch()
+   const [times, setTimes] = useState([])
 
-   const { getValues, setValue, control, watch, reset, handleSubmit } = useForm(
-      {
+   const { register, getValues, setValue, control, reset, handleSubmit } =
+      useForm({
          mode: 'all',
          defaultValues: {
             departmentName: '',
             doctorId: 0,
-            startDateOfWork: '00:00',
-            endDateOfWork: '00:00',
-            startTimeOfWork: '00:00',
-            endTimeOfWork: '00:00',
-            startBreakTime: '00:00',
-            endBreakTime: '00:00',
-            intervalInMinutes: 0,
-            dayOfWeek: {},
+            dateOfVisiting: '00:00',
+            timeOfVisiting: '00:00',
+            firstName: '',
+            lastName: '',
+            middleName: '',
+            phoneNumber: '',
          },
+      })
+
+   const getFreeSlots = async (formattedDate, doctorId) => {
+      try {
+         const { data } = await axiosInstance.get(
+            `/api/appointments/getFreeSlotsByDate?doctorId=${doctorId}&date=${formattedDate}`
+         )
+
+         setTimes(data.freeTimes)
+      } catch (error) {
+         console.error(error)
       }
-   )
+   }
 
    const dateToday = dayjs()
 
-   const startDate = watch('startDateOfWork')
+   const handleStartDateChange = () => {
+      const value = getValues()
 
-   const handleStartDateChange = (date) => {
-      setValue('startDateOfWork', date)
+      const formattedDate = format(new Date(value.dateOfVisiting), 'yyyy-MM-dd')
+
+      setValue('dateOfVisiting', formattedDate)
+      getFreeSlots(formattedDate, value.doctorId)
    }
 
    const serviceChangeHandler = (e) => {
@@ -65,11 +78,8 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
       }
    }
 
-   const handleDayButtonClick = (dayId) => {
-      const dayLabel = DAYS[dayId].label
-      const isActive = !getValues(`dayOfWeek.${dayLabel}`)
-
-      setValue(`dayOfWeek.${dayLabel}`, isActive)
+   const timeChangeHandler = (time) => {
+      setValue('timeOfVisiting', time)
    }
 
    const handleFormSubmit = () => {
@@ -81,39 +91,13 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
       if (!values.doctorId) {
          errors.push('Пожалуйста, выберите врача!')
       }
-      const selectedInterval = INTERVAL_IN_MINUTES.find(
-         (interval) => interval.id === values.intervalInMinutes
-      )
-      if (!selectedInterval) {
-         errors.push(
-            'Интервал времени должен быть 15, 20, 30, 45, 60 или 90 минут!'
-         )
-      }
+
       if (errors.length > 0) {
          notify(errors[0], 'error')
       } else {
-         values.startDateOfWork = format(
-            new Date(values.startDateOfWork),
-            'yyyy-MM-dd'
-         )
-         values.endDateOfWork = format(
-            new Date(values.endDateOfWork),
-            'yyyy-MM-dd'
-         )
-         values.startTimeOfWork = format(
-            new Date(values.startTimeOfWork),
-            'HH:mm'
-         )
-         values.endTimeOfWork = format(new Date(values.endTimeOfWork), 'HH:mm')
-         values.startBreakTime = format(
-            new Date(values.startBreakTime),
-            'HH:mm'
-         )
-         values.endBreakTime = format(new Date(values.endBreakTime), 'HH:mm')
          dispatch(
             postNewAppointmentsThunk({
                ...values,
-               intervalInMinutes: selectedInterval.time,
                departmentName:
                   TRANSLATED_MED_SERVICES_ENG[
                      DEPARTMENTS.find(
@@ -126,6 +110,14 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
          reset()
       }
    }
+
+   const handleKeyPress = (e) => {
+      const keys = e.key
+      if (!/^\d$/.test(keys) && keys !== '+') {
+         e.preventDefault()
+      }
+   }
+
    return (
       <Modal open={open} onClose={onClose}>
          <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -173,7 +165,7 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
                         <label htmlFor="start-date">Дата начала</label>
                         <Controller
                            control={control}
-                           name="startDateOfWork"
+                           name="dateOfVisiting"
                            defaultValue={null}
                            render={({ field }) => (
                               <DatePicker
@@ -181,7 +173,7 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
                                  selected={field.value}
                                  onChange={(date) => {
                                     field.onChange(date)
-                                    handleStartDateChange(date)
+                                    handleStartDateChange()
                                  }}
                                  variant="custom"
                                  minDate={dateToday}
@@ -189,20 +181,24 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
                            )}
                         />
                      </div>
-                     <span>-</span>
                      <div>
-                        <label htmlFor="end-date">Дата окончания</label>
                         <Controller
                            control={control}
-                           name="endDateOfWork"
+                           name="timeOfVisiting"
                            defaultValue={null}
                            render={({ field }) => (
-                              <DatePicker
+                              <SelectUI
+                                 className="custom-select"
+                                 label="Время"
+                                 placeholder="Выберите время"
+                                 options={times}
                                  {...field}
                                  selected={field.value}
-                                 onChange={(date) => field.onChange(date)}
-                                 variant="custom"
-                                 minDate={startDate}
+                                 onChange={(time) => {
+                                    field.onChange(time)
+                                    timeChangeHandler(time)
+                                 }}
+                                 times
                               />
                            )}
                         />
@@ -210,108 +206,61 @@ export const ModalAppointments = ({ open, onClose, setIsModalOpen }) => {
                   </div>
                   <div className="block-inputs">
                      <div>
-                        <label htmlFor="time-from-1">Время от</label>
-                        <Controller
-                           control={control}
-                           name="startTimeOfWork"
-                           defaultValue={null}
-                           render={({ field }) => (
-                              <TimePicker
-                                 {...field}
-                                 selected={field.value}
-                                 onChange={(date) => field.onChange(date)}
-                              />
-                           )}
+                        <label htmlFor="time-from-1">Имя</label>
+                        <Input
+                           width="100%"
+                           fullWidth
+                           {...register('firstName', {
+                              setValueAs: (v) => v.trim(),
+                              required: 'Поле не заполнено',
+                           })}
                         />
                      </div>
-                     <span>-</span>
                      <div>
-                        <label htmlFor="time-to-1">Время до</label>
-                        <Controller
-                           control={control}
-                           name="endTimeOfWork"
-                           defaultValue={null}
-                           render={({ field }) => (
-                              <TimePicker
-                                 {...field}
-                                 selected={field.value}
-                                 onChange={(date) => field.onChange(date)}
-                              />
-                           )}
+                        <label htmlFor="time-to-1">Фамилия</label>
+                        <Input
+                           width="100%"
+                           fullWidth
+                           {...register('lastName', {
+                              setValueAs: (v) => v.trim(),
+                              required: 'Поле не заполнено',
+                           })}
                         />
                      </div>
-                     <Controller
-                        control={control}
-                        name="intervalInMinutes"
-                        defaultValue={null}
-                        render={({ field }) => (
-                           <SelectUI
-                              className="custom-select"
-                              label="Интервал часов"
-                              placeholder="Выберите интервал часов"
-                              options={INTERVAL_IN_MINUTES}
-                              {...field}
-                              selected={field.value}
-                              onChange={(e) => {
-                                 field.onChange(e)
-                              }}
-                           />
-                        )}
-                     />
-                  </div>
-                  <div className="block-inputs">
                      <div>
-                        <label htmlFor="time-from-2">Время от</label>
-                        <Controller
-                           control={control}
-                           name="startBreakTime"
-                           defaultValue={null}
-                           render={({ field }) => (
-                              <TimePicker
-                                 {...field}
-                                 selected={field.value}
-                                 onChange={(date) => field.onChange(date)}
-                              />
-                           )}
+                        <label htmlFor="time-to-1">Отчество</label>
+                        <Input
+                           width="100%"
+                           fullWidth
+                           {...register('middleName', {
+                              setValueAs: (v) => v.trim(),
+                              required: 'Поле не заполнено',
+                           })}
                         />
                      </div>
-                     <span>-</span>
                      <div>
-                        <label htmlFor="time-to-2">Время до</label>
-                        <Controller
-                           control={control}
-                           name="endBreakTime"
-                           defaultValue={null}
-                           render={({ field }) => (
-                              <TimePicker
-                                 {...field}
-                                 selected={field.value}
-                                 onChange={(date) => field.onChange(date)}
-                              />
-                           )}
+                        <label htmlFor="time-to-1">Номер телефона</label>
+                        <Input
+                           width="100%"
+                           fullWidth
+                           placeholder="+996 (_ _ _) _ _  _ _  _ _ "
+                           onKeyPress={handleKeyPress}
+                           {...register('phoneNumber', {
+                              setValueAs: (v) => v.trim(),
+                              required: 'Поле не заполнено',
+                              minLength: {
+                                 value: 13,
+                                 message: 'Номер телефона слишком короткий',
+                              },
+                              maxLength: {
+                                 value: 13,
+                                 message: 'Номер телефона слишком длинный',
+                              },
+                           })}
                         />
-                     </div>
-                     <p>Выберите время для перерыва</p>
-                  </div>
-                  <div>
-                     <label htmlFor="day-buttons-group">Дни повторения</label>
-                     <div id="day-buttons-group" className="day-buttons">
-                        {DAYS.map((day, index) => (
-                           <button
-                              key={day.id}
-                              onClick={() => handleDayButtonClick(day.id)}
-                              type="button"
-                              className={
-                                 getValues(`dayOfWeek.${day.label}`)
-                                    ? 'active'
-                                    : ''
-                              }
-                           >
-                              {RUSSIAN_DAYS[index].label}
-                           </button>
-                        ))}
                      </div>
                   </div>
+
                   <div className="block-buttons">
                      <Button
                         className="button-result"
@@ -356,8 +305,9 @@ const StyleModalContainer = styled('div')`
    }
    .block-inputs {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
+      width: 100%;
       span,
       p {
          margin-top: 1rem;

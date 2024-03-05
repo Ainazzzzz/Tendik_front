@@ -23,6 +23,7 @@ export const SelectUI = ({
    placeholder,
    icon,
    variant,
+   times = false,
    ...rest
 }) => {
    const [selectVal, setSelectVal] = useState('')
@@ -55,8 +56,12 @@ export const SelectUI = ({
             <StyledLabel value="">{placeholder}</StyledLabel>
             {options &&
                options.map((item) => (
-                  <MenuItemStyle key={item.id} value={item.id}>
-                     {variant === 'doctors' ? item.fullName : item.title}
+                  <MenuItemStyle key={item.id} value={times ? item : item.id}>
+                     {times
+                        ? item
+                        : variant === 'doctors'
+                          ? item.fullName
+                          : item.title}
                   </MenuItemStyle>
                ))}
          </SelectMui>

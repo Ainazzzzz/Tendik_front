@@ -120,10 +120,6 @@ const SignIn = ({
                   {...register('password', {
                      setValueAs: (v) => v.trim(),
                      required: 'Поле не заполнено',
-                     minLength: {
-                        value: 8,
-                        message: 'Пароль должен содержать не менее 8 символов',
-                     },
                   })}
                   type={showPassword ? 'text' : 'password'}
                   InputProps={{
