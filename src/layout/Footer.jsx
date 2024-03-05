@@ -81,10 +81,10 @@ const Footer = () => {
          </InfoContainer>
          <Navigations>
             <NavLink to="/aboutClinic">{i18n.t('header.aboutClinic')}</NavLink>
-            <NavLink to="/doctors">{i18n.t('headerdoctors')}</NavLink>
-            <NavLink to="/price">{i18n.t('headerprice')}</NavLink>
+            <NavLink to="/doctors">{i18n.t('header.doctors')}</NavLink>
+            <NavLink to="/price">{i18n.t('header.price')}</NavLink>
             <NavLink to="/reviews">{i18n.t('main.reviews')}</NavLink>
-            <NavLink to="/contacts">{i18n.t('headercontacts')}</NavLink>
+            <NavLink to="/contacts">{i18n.t('header.contacts')}</NavLink>
          </Navigations>
          <div className="line" />
          <p>
