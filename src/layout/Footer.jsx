@@ -56,7 +56,7 @@ const Footer = () => {
                <span>{i18n.t('main.weAreOnSocialMedia')}</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/tendikproject?igsh=MTBkaDA3MXltcHJsMA=="
+                     href="https://www.instagram.com/tendikproject"
                      target="_blank"
                      rel="noreferrer"
                   >

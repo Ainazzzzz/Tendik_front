@@ -26,7 +26,9 @@ const AppointmentForm = ({
    } = useForm({
       mode: 'all',
       defaultValues: {
-         name: '',
+         firstName: '',
+         lastName: '',
+         middleName: '',
          phone: '',
       },
    })
@@ -105,16 +107,31 @@ const AppointmentForm = ({
       <Form onSubmit={(e) => submitAppointment(getValues(), e)}>
          <div>
             <InputForm
-               label="Ваше имя и фамилия"
+               label="Ваша фамилия"
                type="text"
-               {...register('name', {
+               {...register('lastName', {
                   required: 'Поле не заполнено',
-                  pattern: {
-                     message: 'Введите два слова',
-                  },
                })}
-               onChange={(e) => setValue('name', e.target.value)}
-               error={errors.name}
+               onChange={(e) => setValue('lastName', e.target.value)}
+               error={errors.lastName}
+            />
+            <InputForm
+               label="Ваше имя"
+               type="text"
+               {...register('firstName', {
+                  required: 'Поле не заполнено',
+               })}
+               onChange={(e) => setValue('firstName', e.target.value)}
+               error={errors.firstName}
+            />
+            <InputForm
+               label="Ваше отчество"
+               type="text"
+               {...register('middleName', {
+                  required: 'Поле не заполнено',
+               })}
+               onChange={(e) => setValue('middleName', e.target.value)}
+               error={errors.middleName}
             />
             <InputForm
                label="Номер телефона"

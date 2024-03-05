@@ -52,7 +52,9 @@ export const createAppointments = createAsyncThunk(
                doctorId: obj.doctorId,
                dateOfVisiting: obj.date,
                timeOfVisiting: obj.time,
-               fullName: obj.name,
+               firstName: obj.firstName,
+               lastName: obj.lastName,
+               middleName: obj.middleName,
                phoneNumber: obj.phone,
             }
          )
