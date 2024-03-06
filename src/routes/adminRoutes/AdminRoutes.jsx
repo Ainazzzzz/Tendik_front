@@ -28,7 +28,14 @@ const AdminRoutes = () => {
    }
 
    useEffect(() => {
-      navigate(routes.ADMIN.onlineRegistration)
+      if (
+         !window.location.pathname === '/online-registration' ||
+         !window.location.pathname === '/applications' ||
+         !window.location.pathname === '/specialists' ||
+         !window.location.pathname === '/patients'
+      ) {
+         navigate('/online-registration')
+      }
    }, [])
    return (
       <>

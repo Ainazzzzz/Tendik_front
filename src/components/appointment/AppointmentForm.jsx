@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import InputForm from './InputForm'
 import Button from '../UI/Button'
 import { departments, months } from '../../utils/constants/commons'
 import { notify } from '../../utils/constants/snackbar'
-import {
-   createAppointments,
-   // getCode,
-} from '../../store/appointment/appointmentThunk'
+import { createAppointments } from '../../store/appointment/appointmentThunk'
 
 const AppointmentForm = ({
    date,
@@ -17,11 +14,7 @@ const AppointmentForm = ({
    selectedDoctorId,
    openRegistered,
 }) => {
-   // const [formSubmitted, setFormSubmitted] = useState(false)
-
    const dispatch = useDispatch()
-
-   const { codeEmail } = useSelector((state) => state.appointment)
 
    const phoneNumberRegex = /^(\+996|0)\d{9}$/
 
@@ -33,10 +26,10 @@ const AppointmentForm = ({
    } = useForm({
       mode: 'all',
       defaultValues: {
-         name: '',
+         firstName: '',
+         lastName: '',
+         middleName: '',
          phone: '',
-         email: '',
-         code: '',
       },
    })
 
@@ -99,43 +92,46 @@ const AppointmentForm = ({
          doctorId: selectedDoctorId,
          date: formatDate,
          time: formatTime,
-         code: data.code,
-         codeEmail,
          ...data,
       }
 
-      if (obj.code === codeEmail) {
-         dispatch(createAppointments({ obj }))
-            .unwrap()
-            .then(() => openRegistered())
-            .catch((error) =>
-               console.log(error, 'error в AppointmentForm строка 85')
-            )
-      } else {
-         notify('Не правильный код', 'error')
-      }
+      dispatch(createAppointments({ obj }))
+         .unwrap()
+         .then(() => openRegistered())
+         .catch((error) =>
+            console.log(error, 'error в AppointmentForm строка 85')
+         )
    }
 
    return (
       <Form onSubmit={(e) => submitAppointment(getValues(), e)}>
          <div>
             <InputForm
-               label="Ваше имя и фамилия"
+               label="Ваша фамилия"
                type="text"
-               {...register('name', {
+               {...register('lastName', {
                   required: 'Поле не заполнено',
-                  pattern: {
-                     value: /^[a-zA-Z]+\s[a-zA-Z]+$/,
-                     message: 'Введите два слова',
-                  },
                })}
-               onChange={(e) => setValue('name', e.target.value)}
-               error={errors.name}
-               InputProps={
-                  {
-                     // readOnly: formSubmitted,
-                  }
-               }
+               onChange={(e) => setValue('lastName', e.target.value)}
+               error={errors.lastName}
+            />
+            <InputForm
+               label="Ваше имя"
+               type="text"
+               {...register('firstName', {
+                  required: 'Поле не заполнено',
+               })}
+               onChange={(e) => setValue('firstName', e.target.value)}
+               error={errors.firstName}
+            />
+            <InputForm
+               label="Ваше отчество"
+               type="text"
+               {...register('middleName', {
+                  required: 'Поле не заполнено',
+               })}
+               onChange={(e) => setValue('middleName', e.target.value)}
+               error={errors.middleName}
             />
             <InputForm
                label="Номер телефона"
@@ -157,40 +153,7 @@ const AppointmentForm = ({
                })}
                onChange={(e) => setValue('phone', e.target.value)}
                error={errors.phone}
-               InputProps={
-                  {
-                     // readOnly: formSubmitted,
-                  }
-               }
             />
-            <InputForm
-               label="Ваш e-mail"
-               type="email"
-               {...register('email', {
-                  required: 'Поле не заполнено',
-                  setValueAs: (v) => v.trim(),
-               })}
-               onChange={(e) => setValue('email', e.target.value)}
-               error={errors.email}
-               InputProps={
-                  {
-                     // readOnly: formSubmitted,
-                  }
-               }
-            />
-            {codeEmail && (
-               <InputForm
-                  label="Введите код из почты"
-                  className="codeInput"
-                  type="text"
-                  onKeyPress={handleKeyPress}
-                  {...register('code', {
-                     required: 'Поле не заполнено',
-                  })}
-                  onChange={(e) => setValue('code', e.target.value)}
-                  error={errors.code}
-               />
-            )}
          </div>
 
          <StyledButton type="submit">Продолжить</StyledButton>

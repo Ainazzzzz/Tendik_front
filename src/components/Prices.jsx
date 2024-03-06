@@ -1,26 +1,26 @@
 import React from 'react'
 import { styled } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import CustomizedAccordions from './UI/Accordion'
 import { prices } from '../utils/constants/accordions'
 
 const Prices = () => {
    window.scrollTo({ top: 0 })
+
+   const { i18n } = useTranslation()
    return (
       <>
          <MainPart>
-            <a href="/">Главная {'>'}</a>
-            <span className="service"> Прайс</span>
+            <a href="/">
+               {i18n.t('main.main')} {'>'}
+            </a>
+            <span className="service"> {i18n.t('header.price')}</span>
          </MainPart>
          <ServiceStyle>
-            <span>Наш</span>
-            <span className="our_service"> прайс</span>
+            <span>{i18n.t('main.oure')}</span>
+            <span className="our_service"> {i18n.t('main.lowerPrice')}</span>
          </ServiceStyle>
-         <P>
-            Цены на услуги формируются в соответствии с действующими
-            Прейскурантами. Общая стоимость зависит от объема услуг, оказываемых
-            в рамках приёма. Объём оказываемых услуг определяется врачом, исходя
-            из показаний для обследования и пожеланий клиента.
-         </P>
+         <P>{i18n.t('main.aboutPrice')}</P>
 
          <AccordionContainer>
             <StyledAccordions>

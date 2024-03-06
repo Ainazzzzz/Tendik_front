@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Breadcrumbs, Stack } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { fetchDoctorById } from '../../store/doctors/doctorsThunk'
 import Button from '../../components/UI/Button'
 import { Vector } from '../../assets'
@@ -18,6 +19,8 @@ const DoctorInnerPage = () => {
    const { isAuth } = useSelector((state) => state.authorization)
 
    const { selectedDoctor } = useSelector((state) => state.doctors)
+
+   const { i18n } = useTranslation()
 
    useEffect(() => {
       dispatch(fetchDoctorById(doctorId))
@@ -50,10 +53,10 @@ const DoctorInnerPage = () => {
             <Stack spacing={2}>
                <NavContainer separator="›" aria-label="breadcrumb">
                   <StyledNavLink to="/">
-                     <p>Главная</p>
+                     <p>{i18n.t('main.main')}</p>
                   </StyledNavLink>
                   <StyledNavLink to="/doctors">
-                     <p>Врачи</p>
+                     <p>{i18n.t('header.doctors')}</p>
                   </StyledNavLink>
                   <p>
                      {selectedDoctor.firstName} {selectedDoctor.lastName}
@@ -64,8 +67,7 @@ const DoctorInnerPage = () => {
                {selectedDoctor.firstName} {selectedDoctor.lastName}
             </h4>
             <StyledText>
-               Попасть в команду медицинской клиники «Medical Clinic» могут{' '}
-               <br />
+               Попасть в команду медицинской клиники «Tendik» могут <br />
                только лучшие специалисты c многолетней практикой и доказанным
                опытом.
             </StyledText>
@@ -87,8 +89,12 @@ const DoctorInnerPage = () => {
                   <p>
                      Должность: <b>{selectedDoctor.position}</b>
                   </p>
-                  <StButton variant="contained" onClick={isDrawerOpenHandler}>
-                     Записаться на прием
+                  <StButton
+                     variant="contained"
+                     type="submit"
+                     onClick={isDrawerOpenHandler}
+                  >
+                     {i18n.t('main.makeAnAppointment')}
                   </StButton>
                </div>
             </StyledDoctorsInnerContainer>

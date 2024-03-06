@@ -3,6 +3,7 @@ import { IconButton, InputAdornment, styled } from '@mui/material'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import Button from '../../../components/UI/Button'
 import { Input } from '../../../components/UI/input/Input'
 import {
@@ -24,6 +25,7 @@ import ForgotPassword from '../../login/ForgotPassword'
 import { localStorageKeys } from '../../../utils/constants/constants'
 import OnlineAppointment from '../../../components/appointment/OnlineAppointment'
 import { routes } from '../../../utils/constants/routes'
+import { setLanguageHeader } from '../../../config/axiosInstance'
 
 const Header = ({ logoutHandler, variant }) => {
    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
@@ -32,9 +34,18 @@ const Header = ({ logoutHandler, variant }) => {
       useState(false)
    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+   const { i18n } = useTranslation()
+
    const navigate = useNavigate()
 
    const { isAuth } = useSelector((state) => state.authorization)
+
+   const changeLanguage = (language) => {
+      i18n.changeLanguage(language)
+      setLanguageHeader(i18n.language)
+   }
+
+   setLanguageHeader(i18n.language)
 
    const navigateToForgotPassword = (e) => {
       e.preventDefault()
@@ -171,12 +182,12 @@ const Header = ({ logoutHandler, variant }) => {
                <div className="containerInfo">
                   <div className="address">
                      <LocationsIcon />
-                     <h3>106452, г. Бишкек, Гражданская 119</h3>
+                     <h3>106452, г. Бишкек, Тендик 4/1</h3>
                   </div>
                   <div className="workingHours">
                      <ScheduleIcon />
                      <h3>
-                        <span>пн-сб</span> 08:00 до 18:00
+                        <span>пн-сб</span> 09:00 до 16:00
                      </h3>
                   </div>
                </div>
@@ -194,7 +205,7 @@ const Header = ({ logoutHandler, variant }) => {
                   }}
                />
                <ContainerIcons>
-                  <a href="https://www.instagram.com">
+                  <a href="https://www.instagram.com/tendikproject">
                      <InstagramIcon />
                   </a>
                   <a href="https://web.telegram.org/k/#-4032240673">
@@ -208,11 +219,24 @@ const Header = ({ logoutHandler, variant }) => {
                   <div className="numbers">
                      <PhoneIcon />
                      <div>
-                        <h3>+996(500) 344 433</h3>
-                        <h3>+996(999) 344 433</h3>
+                        <h3>+996(770) 503 284</h3>
+                        <h3>+996(707) 503 284</h3>
                      </div>
                   </div>
-
+                  <LanguageSwitcherStyle>
+                     <button
+                        onClick={() => changeLanguage('ky')}
+                        disabled={i18n.resolvedLanguage === 'ky'}
+                     >
+                        KG
+                     </button>
+                     <button
+                        onClick={() => changeLanguage('ru')}
+                        disabled={i18n.resolvedLanguage === 'ru'}
+                     >
+                        RU
+                     </button>
+                  </LanguageSwitcherStyle>
                   <ReusableMenu
                      buttonIcon={<ProfileIcon />}
                      menuItems={menuItems}
@@ -227,13 +251,16 @@ const Header = ({ logoutHandler, variant }) => {
                </StyleCheck>
                <NavList>
                   <NavlinkStyled to={routes.USER.aboutClinic}>
-                     О клинике
+                     {i18n.t('header.aboutClinic')}
                   </NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.service}>Услуги</NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.doctors}>Врачи</NavlinkStyled>
-                  <NavlinkStyled to={routes.USER.prices}>Прайс</NavlinkStyled>
+                  <NavlinkStyled to={routes.USER.doctors}>
+                     {i18n.t('header.doctors')}
+                  </NavlinkStyled>
+                  <NavlinkStyled to={routes.USER.prices}>
+                     {i18n.t('header.price')}
+                  </NavlinkStyled>
                   <NavlinkStyled to={routes.USER.contacts}>
-                     Контакты
+                     {i18n.t('header.contacts')}
                   </NavlinkStyled>
                </NavList>
                <ContainerButton>
@@ -241,10 +268,10 @@ const Header = ({ logoutHandler, variant }) => {
                      variant="outlined"
                      onClick={navigateToGetResult}
                   >
-                     ПОЛУЧИТЬ РЕЗУЛЬТАТЫ
+                     {i18n.t('header.getResult')}
                   </StyledButton>
                   <StyledButton onClick={isDrawerOpenHandler}>
-                     ЗАПИСЬ ОНЛАЙН
+                     {i18n.t('header.onlineAppointment')}
                   </StyledButton>
                </ContainerButton>
             </SecondNavStyle>
@@ -355,6 +382,7 @@ const ContainerButton = styled('div')`
    gap: 30px;
 `
 const StyledButton = styled(Button)(() => ({
+   textTransform: 'uppercase',
    borderRadius: '25px',
    '&:hover': { borderRadius: '25px' },
    '&:active': { borderRadius: '25px' },
@@ -382,3 +410,26 @@ const ContainerIcons = styled('div')`
    display: flex;
    gap: 10px;
 `
+
+const LanguageSwitcherStyle = styled('div')(() => ({
+   display: 'flex',
+   'button:nth-child(1)': {
+      borderRadius: '5px 0 0 5px',
+   },
+   'button:nth-child(2)': {
+      borderRadius: '0 5px 5px 0',
+   },
+   button: {
+      padding: '5px 10px',
+      color: '#048741',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: '#f3f1f1',
+      '&:hover': {
+         backgroundColor: '#ebe8e8',
+      },
+      '&:disabled': {
+         backgroundColor: '#dadada',
+      },
+   },
+}))

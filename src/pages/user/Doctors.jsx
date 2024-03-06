@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from '@emotion/styled'
 import { Breadcrumbs, Stack } from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import DoctorCard from '../../components/UI/DoctorCard'
 import { fetchDoctors } from '../../store/doctors/doctorsThunk'
 
 const Doctors = () => {
+   const { i18n } = useTranslation()
+
    const { doctors } = useSelector((state) => state.doctors)
    const [showAllDepartments, setShowAllDepartments] = useState(false)
 
@@ -45,23 +48,19 @@ const Doctors = () => {
          <Stack spacing={2}>
             <Container separator="›" aria-label="breadcrumb">
                <StyledNavLink to="/">
-                  <p>Главная</p>
+                  <p>{i18n.t('main.main')}</p>
                </StyledNavLink>
-               <p>Врачи</p>
+               <p>{i18n.t('header.doctors')}</p>
             </Container>
          </Stack>
          <Titl>
-            Наши <span style={{ color: '#048741' }}>врачи</span>
+            {i18n.t('main.our')}
+            <span style={{ color: '#048741' }}> {i18n.t('main.doctors')}</span>
          </Titl>
+         <p className="text">{i18n.t('main.ourDoctorsFirstDescription')}</p>
          <p className="text">
-            Попасть в команду медицинской клиники «Medical Clinic» могут <br />
-            только лучшие специалисты c многолетней практикой и доказанным
-            опытом.
-         </p>
-         <p className="text">
-            Мы развиваемся, учимся и оттачиваем мастерство, стажируемся в
-            ведущих университетах <br /> Европы, чтобы еще на шаг стать ближе к
-            совершенству.
+            {i18n.t('main.ourDoctorsSecondDscription')} <br />
+            {i18n.t('main.ourDoctorsSecond')}
          </p>
 
          <StyledDoctorsInnerContainer>
@@ -76,14 +75,15 @@ const Doctors = () => {
                </div>
             ))}
             <StyledSpan>
-               В нашей клинике работают: <b>более 30 специалистов</b>
+               {i18n.t('main.ourClinicDoctors')}{' '}
+               <b>{i18n.t('main.moreDoctors')}</b>
                {!showAllDepartments ? (
                   <StyledButton onClick={handleShowMoreClick}>
-                     Показать больше
+                     {i18n.t('main.readMore')}
                   </StyledButton>
                ) : (
                   <StyledButton onClick={handleShowLessClick}>
-                     Показать меньше
+                     {i18n.t('main.showLess')}
                   </StyledButton>
                )}
             </StyledSpan>

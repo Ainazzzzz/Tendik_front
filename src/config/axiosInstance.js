@@ -13,6 +13,10 @@ export const axiosInstance = axios.create({
    headers,
 })
 
+export const setLanguageHeader = (language) => {
+   axiosInstance.defaults.headers.common['accept-language'] = language
+}
+
 axiosInstance.interceptors.request.use((config) => {
    const updatedConfig = { ...config }
    const { token } = store.getState().authorization

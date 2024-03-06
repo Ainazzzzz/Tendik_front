@@ -1,24 +1,24 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
-import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
 import ApplicationForm from '../../components/ApplicationForm'
-import { MainDoctorImage, WelcomeWord } from '../../assets'
+import { MainDoctorImage, WelcomeWord, WelcomeWordKg } from '../../assets'
 import AboutClinicLayout from '../../components/AboutClinicLayout'
-import {
-   BEST_DOCTORS_IMAGES,
-   MAIN_MED_SERVICES,
-} from '../../utils/services/med_service'
+import { BEST_DOCTORS_IMAGES } from '../../utils/services/med_service'
 import { ApplicationModal } from '../../components/ApplicationModal'
 import ChangePassword from '../../layout/login/ChangePassword'
 
 const LandingPage = ({ variant }) => {
    window.scrollTo({ top: 0 })
 
+   const { i18n } = useTranslation()
+
    const [showApplicationModal, setShowApplicationModal] = useState(false)
-   const navigate = useNavigate()
 
    const showModalHandler = () => {
       setShowApplicationModal(true)
@@ -28,10 +28,6 @@ const LandingPage = ({ variant }) => {
       setShowApplicationModal(false)
    }
 
-   const naviageteToServicePage = () => {
-      navigate('/service')
-   }
-
    return (
       <>
          {variant === 'password' ? <ChangePassword /> : null}
@@ -39,14 +35,15 @@ const LandingPage = ({ variant }) => {
             <div>
                <Box>
                   <InfoBox>
-                     <img src={WelcomeWord} alt="welcomeWord" />
-                     <p>
-                        Международный Медицинская клиника «HealthCheck — это
-                        клиника, в которой применяются новейшие диагностические
-                        и лечебные технологии и ведут прием лучшие специалисты.
-                     </p>
+                     <img
+                        src={
+                           i18n.language === 'ky' ? WelcomeWordKg : WelcomeWord
+                        }
+                        alt="welcomeWord"
+                     />
+                     <p>{i18n.t('main.welcomeDescription')}</p>
                      <Button variant="outlined" onClick={showModalHandler}>
-                        ОСТАВЬТЕ ЗАЯВКУ
+                        {i18n.t('main.leaveRequest')}
                      </Button>
                      <BasicModalStyle
                         open={showApplicationModal}
@@ -59,59 +56,26 @@ const LandingPage = ({ variant }) => {
                </Box>
                <DetailsBox>
                   <h1>
-                     Почему <span>нас выбирают?</span>
+                     {i18n.t('main.why')}
+                     <span> {i18n.t('main.whyAreWeBeingChosen')}</span>
                   </h1>
                   <MainInfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>1</span>
-                        <h3>Высокий профессионализм сотрудников</h3>
-                        <p>
-                           Медицинская лицензия, большой опыт врачей и
-                           постоянное повышение квалификации.
-                        </p>
+                        <h3>{i18n.t('main.firstAnswerTitle')}</h3>
+                        <p>{i18n.t('main.firstAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>2</span>
-                        <h3>Наши пациенты - наши лучшие друзья</h3>
-                        <p>
-                           Все аппараты и медицинские препараты сертифицированы
-                           и лицензированы.
-                        </p>
+                        <h3>{i18n.t('main.secondAnswerTitle')}</h3>
+                        <p>{i18n.t('main.secondAnswer')}</p>
                      </InfoDepartmentBox>
                      <InfoDepartmentBox>
                         <span>3</span>
-                        <h3>Комфортные условия</h3>
-                        <p>
-                           Уютная обстановка и отзывчивый персонал сделают поход
-                           в клинику максимально приятным.
-                        </p>
+                        <h3>{i18n.t('main.thirdAnswerTitle')}</h3>
+                        <p>{i18n.t('main.thirdAnswer')}</p>
                      </InfoDepartmentBox>
                   </MainInfoDepartmentBox>
-                  <div>
-                     <h1>
-                        Наши <span>услуги</span>
-                     </h1>
-                     <Title>
-                        За все время работы клиника приняла более 1 млн.
-                        пациентов.
-                     </Title>
-                     <ServiceBox>
-                        {MAIN_MED_SERVICES.map((service) => (
-                           <div key={service.id}>
-                              <ServiceStyle>{service.img}</ServiceStyle>
-                              <ServiceTitle>{service.title}</ServiceTitle>
-                           </div>
-                        ))}
-                     </ServiceBox>
-                     <ButtonBox>
-                        <Button
-                           variant="outlined"
-                           onClick={naviageteToServicePage}
-                        >
-                           Смотреть все
-                        </Button>
-                     </ButtonBox>
-                  </div>
                </DetailsBox>
             </div>
          </GlobalContainer>
@@ -119,13 +83,9 @@ const LandingPage = ({ variant }) => {
          <GlobalDoctorContainer>
             <MainDoctorsBox>
                <h1>
-                  Лучшие <span>врачи</span>
+                  {i18n.t('main.best')} <span>{i18n.t('main.doctors')}</span>
                </h1>
-               <TitleStyle>
-                  Попасть в команду медицинской клиники «HealthCheck» могут
-                  только лучшие специалисты с многолетней практикой и доказанным
-                  опытом.
-               </TitleStyle>
+               <TitleStyle>{i18n.t('main.bestDoctorsDescription')}</TitleStyle>
                <DoctorsBox>
                   {BEST_DOCTORS_IMAGES.map((doctor) => (
                      <DoctorBox key={doctor.id}>
@@ -140,7 +100,11 @@ const LandingPage = ({ variant }) => {
                   ))}
                </DoctorsBox>
                <ButtonBox>
-                  <Button variant="outlined">Все врачи клиники</Button>
+                  <Link to="/doctors">
+                     <Button variant="outlined">
+                        {i18n.t('main.allDoctors')}
+                     </Button>
+                  </Link>
                </ButtonBox>
             </MainDoctorsBox>
          </GlobalDoctorContainer>
@@ -188,6 +152,7 @@ const InfoBox = styled('div')(() => ({
    },
    button: {
       borderRadius: '24px',
+      textTransform: 'uppercase',
    },
 }))
 
@@ -242,50 +207,12 @@ const MainInfoDepartmentBox = styled('div')(() => ({
    justifyContent: 'center',
    alignItems: 'center',
 }))
-const Title = styled('p')(() => ({
-   fontSize: '18px',
-   fontWeight: 400,
-   lineHeight: '25px',
-   marginTop: '34px',
-}))
-const ServiceStyle = styled('div')(() => ({
-   border: '1px solid #DEDEDE',
-   width: '102px',
-   height: '106px',
-   borderRadius: '18px',
-   display: 'flex',
-   justifyContent: 'center',
-   alignItems: 'center',
-   margin: '60px 0 20px 0',
 
-   '&:hover': {
-      background: ' linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-      path: {
-         fill: '#ffff',
-      },
-   },
-}))
-const ServiceBox = styled('div')(() => ({
-   display: 'flex',
-   flexDirection: 'row',
-   justifyContent: 'space-between',
-   div: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-   },
-}))
-const ServiceTitle = styled('p')(() => ({
-   fontFamily: 'Manrope',
-   fontSize: '16px',
-   fontWeight: 300,
-   color: '#000000',
-   paddingBottom: '48px',
-}))
 const ButtonBox = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'center',
 }))
+
 const DoctorsBox = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
@@ -293,6 +220,7 @@ const DoctorsBox = styled('div')(() => ({
    gap: '3rem',
    padding: '0px 15px',
 }))
+
 const MainDoctorsBox = styled('div')(() => ({
    h1: {
       fontWeight: 600,

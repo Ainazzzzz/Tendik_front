@@ -115,7 +115,8 @@ export const PatientsInternalPage = () => {
    const patientLabels = {
       firstName: 'Имя',
       lastName: 'Фамилия',
-      email: 'Email',
+      middleName: 'Отчество',
+      password: 'Пароль',
       phoneNumber: 'Номер телефона',
    }
    return (
