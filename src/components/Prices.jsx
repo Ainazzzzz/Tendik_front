@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import CustomizedAccordions from './UI/Accordion'
 import { prices } from '../utils/constants/accordions'
 
 const Prices = () => {
@@ -22,27 +21,14 @@ const Prices = () => {
          </ServiceStyle>
          <P>{i18n.t('main.aboutPrice')}</P>
 
-         <AccordionContainer>
-            <StyledAccordions>
-               {prices.map((el) => (
-                  <CustomizedAccordions key={el.id} title={el.title}>
-                     <StyledPrice>
-                        <div className="prices-data">
-                           <h2>{el.data}</h2> <h2>{el.price}com</h2>
-                        </div>
-
-                        <p className="description">{el.description}</p>
-                        {el.prices.map((item) => (
-                           <div className="prices">
-                              <h3>{item.data}</h3>
-                              <h2>{item.price}com</h2>
-                           </div>
-                        ))}
-                     </StyledPrice>
-                  </CustomizedAccordions>
-               ))}
-            </StyledAccordions>
-         </AccordionContainer>
+         <PricesContainer>
+            {prices.map((item) => (
+               <div className="prices">
+                  <p>{item.title}</p>
+                  <p>{item.price}</p>
+               </div>
+            ))}
+         </PricesContainer>
       </>
    )
 }
@@ -82,14 +68,22 @@ export const StyledAccordions = styled('div')`
    }
 `
 
-const StyledPrice = styled('div')`
-   text-align: left;
-`
-
-const AccordionContainer = styled('div')(() => ({
+const PricesContainer = styled('div')(() => ({
    width: '60%',
    marginLeft: '98px',
    marginBottom: '100px',
+
+   '& .prices': {
+      display: 'flex',
+      backgroundColor: '#dbf0e5',
+      padding: '20px 10px',
+      margin: '0 0 20px 0',
+      fontSize: '18px',
+      fontWeight: 500,
+      justifyContent: 'space-between',
+      borderRadius: '12px',
+      borderLeft: '10px solid #048741',
+   },
 }))
 
 const MainPart = styled('p')(() => ({
