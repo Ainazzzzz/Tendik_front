@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { DoctorImg, Rectange, Signature } from '../assets'
+import { DoctorImg, Rectange } from '../assets'
 import AboutClinicLayout from './AboutClinicLayout'
 
 const AboutHealth = () => {
@@ -36,9 +36,6 @@ const AboutHealth = () => {
                      <br />
                      <br />
                      <p>{i18n.t('main.secondAboutDirector')}</p>
-                     <StyledSignatureImG>
-                        <img src={Signature} alt="main doctor" />
-                     </StyledSignatureImG>
                   </StyledAboutText>
                   <div>
                      <StyledImageContainer>
@@ -132,12 +129,4 @@ const StyledDoctorImG = styled('img')(() => ({
    position: 'absolute',
    top: '-1.5rem',
    left: '2.5rem',
-}))
-
-const StyledSignatureImG = styled('div')(() => ({
-   display: ' flex',
-   justifyContent: 'end',
-   img: {
-      marginTop: '1.25rem ',
-   },
 }))
