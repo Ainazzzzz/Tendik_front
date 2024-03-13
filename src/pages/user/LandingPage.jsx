@@ -7,7 +7,7 @@ import Button from '../../components/UI/Button'
 import { FeedbackSlider } from '../../components/UI/slider/FeedbackSlider'
 import Modal from '../../components/UI/Modal'
 import ApplicationForm from '../../components/ApplicationForm'
-import { MainDoctorImage, WelcomeWord, WelcomeWordKg } from '../../assets'
+import { Background, RoryPhoto, WelcomeWord, WelcomeWordKg } from '../../assets'
 import AboutClinicLayout from '../../components/AboutClinicLayout'
 import { BEST_DOCTORS_IMAGES } from '../../utils/services/med_service'
 import { ApplicationModal } from '../../components/ApplicationModal'
@@ -52,7 +52,10 @@ const LandingPage = ({ variant }) => {
                         <ApplicationModal onClose={closeModalHandler} />
                      </BasicModalStyle>
                   </InfoBox>
-                  <img src={MainDoctorImage} alt="mainPageDoctor" />
+                  <StyledDoctorImgCont>
+                     <DoctorImg src={RoryPhoto} alt="mainPageDoctor" />
+                     <BackgroundImg src={Background} alt="mainPageDoctor" />
+                  </StyledDoctorImgCont>
                </Box>
                <DetailsBox>
                   <h1>
@@ -154,6 +157,21 @@ const InfoBox = styled('div')(() => ({
       borderRadius: '24px',
       textTransform: 'uppercase',
    },
+}))
+
+const StyledDoctorImgCont = styled(Box)(() => ({
+   position: 'relative',
+}))
+
+const DoctorImg = styled('img')(() => ({
+   width: '400px',
+}))
+const BackgroundImg = styled('img')(() => ({
+   width: '400px',
+   position: 'absolute',
+   zIndex: '-1',
+   top: '133px',
+   borderRadius: '30% 0 30% 0',
 }))
 
 const DetailsBox = styled('div')(() => ({

@@ -7,35 +7,48 @@ import { Pagination, NextImg, PreviousImg } from '../../../assets'
 const infoSlide = [
    {
       id: 1,
-      name: 'Александр',
+      name: 'Ben Widerski',
       img: ImgSlider,
       rating: 5,
-      review:
-         'Хочу выразить признательность и благодарность отличному врачу - Попову Алексею Дмитриевичу за профессиональное удаление зуба мудрости! Отмечу, что зуб был очень сложным: расположен за челюстной костью, росший вниз (под семерку), с кривыми корнями. Не ожидал, что удаление такого зуба сможет пройти столь спокойно и безболезненно (пишу, кстати, по факту заживления - лунка затянулась прекрасно). В общем, огромное спасибо Алексею Дмитриевичу , персоналу и самой клинике!',
+      review: 'Great people, good place',
    },
    {
       id: 2,
-      name: 'Александр',
-      img: ImgSlider,
+      name: 'Gulnura Meimanbekova',
+      img: null,
       rating: 5,
       review:
-         'Хочу выразить признательность и благодарность отличному врачу - Попову Алексею Дмитриевичу за профессиональное удаление зуба мудрости! Отмечу, что зуб был очень сложным: расположен за челюстной костью, росший вниз (под семерку), с кривыми корнями. Не ожидал, что удаление такого зуба сможет пройти столь спокойно и безболезненно (пишу, кстати, по факту заживления - лунка затянулась прекрасно). В общем, огромное спасибо Алексею Дмитриевичу , персоналу и самой клинике!',
+         'Very nice staff! Exellent doctors who know their stuff. I contact and get treatment from them more than once',
    },
    {
       id: 3,
-      name: 'Александр',
+      name: 'Ben Widerski',
       img: ImgSlider,
       rating: 5,
-      review:
-         'Хочу выразить признательность и благодарность отличному врачу - Попову Алексею Дмитриевичу за профессиональное удаление зуба мудрости! Отмечу, что зуб был очень сложным: расположен за челюстной костью, росший вниз (под семерку), с кривыми корнями. Не ожидал, что удаление такого зуба сможет пройти столь спокойно и безболезненно (пишу, кстати, по факту заживления - лунка затянулась прекрасно). В общем, огромное спасибо Алексею Дмитриевичу , персоналу и самой клинике!',
+      review: 'Great people, good place',
    },
    {
       id: 4,
-      name: 'Александр',
+      name: 'Gulnura Meimanbekova',
       img: ImgSlider,
       rating: 5,
       review:
-         'Хочу выразить признательность и благодарность отличному врачу - Попову Алексею Дмитриевичу за профессиональное удаление зуба мудрости! Отмечу, что зуб был очень сложным: расположен за челюстной костью, росший вниз (под семерку), с кривыми корнями. Не ожидал, что удаление такого зуба сможет пройти столь спокойно и безболезненно (пишу, кстати, по факту заживления - лунка затянулась прекрасно). В общем, огромное спасибо Алексею Дмитриевичу , персоналу и самой клинике!',
+         'Very nice staff! Exellent doctors who know their stuff. I contact and get treatment from them more than once',
+   },
+   {
+      id: 5,
+      name: 'Ben Widerski',
+      img: null,
+      rating: 5,
+      review: 'Great people, good place',
+   },
+   {
+      id: 6,
+      name: 'Gulnura Meimanbekova',
+      img: ImgSlider,
+      rating: 5,
+      review:
+         'Very nice staff! Exellent doctors who know their stuff. I contact and get treatment from them more than once',
    },
 ]
 
@@ -68,7 +81,11 @@ export const FeedbackSlider = () => {
                   return (
                      <Container key={item.id}>
                         <Div>
-                           <img src={item.img} alt="" />
+                           {item.img ? (
+                              <img src={item.img} alt="" />
+                           ) : (
+                              <div className="no-avatar">{item.name[0]}</div>
+                           )}
                            <Wrapper>
                               <Username>{item.name}</Username>
                               <Rating value={item.rating} readOnly />
@@ -89,6 +106,18 @@ const MainContainer = styled('div')({
    justifyContent: 'center',
    overflow: 'hidden',
    fontFamily: 'Manrope',
+
+   '.no-avatar': {
+      width: '50px',
+      height: '50px',
+      backgroundColor: '#e4e7ee',
+      borderRadius: '50%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: '30px',
+      fontWeight: 500,
+   },
 })
 
 const StyledInfo = styled('h2')({

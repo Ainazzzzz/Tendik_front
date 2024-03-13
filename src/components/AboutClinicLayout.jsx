@@ -52,7 +52,6 @@ export default AboutClinicLayout
 
 const StyledAboutSecondText = styled.div`
    width: 50%;
-   height: 34rem;
    display: flex;
    flex-direction: column;
    justify-content: space-between;

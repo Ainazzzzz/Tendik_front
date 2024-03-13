@@ -24,7 +24,7 @@ const Prices = () => {
          <PricesContainer>
             {prices.map((item) => (
                <div className="prices">
-                  <p>{item.title}</p>
+                  <p>{i18n.t(`main.${item.title}`)}</p>
                   <p>{item.price}</p>
                </div>
             ))}

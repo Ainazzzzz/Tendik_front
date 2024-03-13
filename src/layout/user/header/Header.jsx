@@ -187,7 +187,13 @@ const Header = ({ logoutHandler, variant }) => {
                   <div className="workingHours">
                      <ScheduleIcon />
                      <h3>
-                        <span>пн-сб</span> 09:00 до 16:00
+                        <span>Пн, Ср-Пт</span> 08:30 до 16:00
+                     </h3>
+                  </div>
+                  <div className="workingHours">
+                     <ScheduleIcon />
+                     <h3>
+                        <span>Вт</span> 08:30 до 13:00
                      </h3>
                   </div>
                </div>
