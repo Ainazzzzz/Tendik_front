@@ -15,8 +15,8 @@ import {
    ProfileIcon,
    ScheduleIcon,
    SearchIcon,
-   TelegramIcon,
    WhatsappIcon,
+   FaceBookIcon,
 } from '../../../assets'
 import ReusableMenu from '../../../components/UI/Menu'
 import SignIn from '../../login/SignIn'
@@ -214,10 +214,10 @@ const Header = ({ logoutHandler, variant }) => {
                   <a href="https://www.instagram.com/tendikproject">
                      <InstagramIcon />
                   </a>
-                  <a href="https://web.telegram.org/k/#-4032240673">
-                     <TelegramIcon />
+                  <a href="https://www.facebook.com/tendikproject/?locale=ru_RU">
+                     <FaceBookIcon />
                   </a>
-                  <a href="https://www.whatsapp.com">
+                  <a href="https://wa.me/996707503284">
                      <WhatsappIcon />
                   </a>
                </ContainerIcons>
@@ -415,6 +415,7 @@ const StyledInput = styled(Input)(() => ({
 const ContainerIcons = styled('div')`
    display: flex;
    gap: 10px;
+   align-items: center;
 `
 
 const LanguageSwitcherStyle = styled('div')(() => ({

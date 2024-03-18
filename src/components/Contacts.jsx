@@ -39,7 +39,8 @@ const Contacts = () => {
             <ContainerInfo>
                <ContactInfo>{i18n.t('main.clinicWorkingHours')}</ContactInfo>
                <ContactInfoP>
-                  Понедельник - суббота с 09:00 до 16:00.
+                  <p>Пн, Ср-Пт 08:30 до 16:00</p>
+                  <p>Вт 08:30 до 13:00</p>
                </ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>

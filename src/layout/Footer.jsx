@@ -7,8 +7,8 @@ import Email from '../assets/icons/email-outlined.svg'
 import TimeIcon from '../assets/icons/time-outlined.svg'
 import LocationIcon from '../assets/icons/location-outlined.svg'
 import InstagramIcon from '../assets/icons/instagram-icon.svg'
-import TelegramIcon from '../assets/icons/telegram-icon.svg'
 import WhatsappIcon from '../assets/icons/whatsapp-icon.svg'
+import FacebookWhite from '../assets/icons/facebook_white.svg'
 import { HealthCheckIcon, TendikAPK } from '../assets'
 
 const Footer = () => {
@@ -37,8 +37,13 @@ const Footer = () => {
                   <p>106452, г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
-                  <img src={TimeIcon} alt="time" />
-                  <p>пн-сб 09:00 до 16:00</p>
+                  <div>
+                     <img src={TimeIcon} alt="time" />
+                  </div>
+                  <div>
+                     <p>Пн, Ср-Пт 08:30 до 16:00</p>
+                     <p>Вт 08:30 до 13:00</p>
+                  </div>
                </li>
                <li>
                   <img src={PhoneIcon} alt="phone" />
@@ -63,11 +68,11 @@ const Footer = () => {
                      <img src={InstagramIcon} alt="instagram" />
                   </a>
                   <a
-                     href="https://telegram.org/"
+                     href="https://www.facebook.com/tendikproject/?locale=ru_RU"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <img src={TelegramIcon} alt="telegram" />
+                     <img src={FacebookWhite} alt="telegram" />
                   </a>
                   <a
                      href="https://whatsapp.com/"

@@ -28,15 +28,8 @@ const AdminRoutes = () => {
    }
 
    useEffect(() => {
-      if (
-         !window.location.pathname === '/online-registration' ||
-         !window.location.pathname === '/applications' ||
-         !window.location.pathname === '/specialists' ||
-         !window.location.pathname === '/patients'
-      ) {
-         navigate('/online-registration')
-      }
-   }, [])
+      navigate('/online-registration')
+   }, [isAuth])
    return (
       <>
          <Header logoutHandler={logoutHandler} />
