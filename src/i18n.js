@@ -26,7 +26,7 @@ i18n
       nsSeperator: false,
       keySeperator: false,
       backend: {
-         loadPath: '/locales/{{lng}}/{{ns}}.json',
+         loadPath: 'public/locales/translation.json',
       },
    })
 // .init({
