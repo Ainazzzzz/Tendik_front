@@ -2,7 +2,7 @@ import axios from 'axios'
 import { store } from '../store'
 import { logout } from '../store/auth/authSlice'
 
-export const BASE_URL = 'http://18.197.23.153/'
+export const BASE_URL = 'http://3.70.225.233/'
 
 const headers = {
    'Content-type': 'application/json',
@@ -12,6 +12,10 @@ export const axiosInstance = axios.create({
    baseURL: BASE_URL,
    headers,
 })
+
+export const setLanguageHeader = (language) => {
+   axiosInstance.defaults.headers.common['accept-language'] = language
+}
 
 axiosInstance.interceptors.request.use((config) => {
    const updatedConfig = { ...config }

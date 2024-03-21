@@ -12,6 +12,7 @@ import {
 import { styled } from '@mui/material/styles'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Button from './UI/Button'
 import { ButtonIcon, CloseIcon, Phone, Users } from '../assets'
 import { addApplications } from '../store/applications/applicationsThunk'
@@ -23,6 +24,8 @@ export const ApplicationModal = ({ onClose }) => {
    const [name, setName] = useState('')
    const [number, setNumber] = useState('')
    const [successfulSent, setSuccessfulSent] = useState(false)
+
+   const { i18n } = useTranslation()
 
    const disabledInfo = name && number
    const nameChangeHandler = (e) => {
@@ -53,29 +56,37 @@ export const ApplicationModal = ({ onClose }) => {
          </CloseIconStyleContianer>
          {successfulSent ? (
             <SuccessSmsBox>
-               <DialogTitleStyled>Заявка успешно отправлена!</DialogTitleStyled>
+               <DialogTitleStyled>
+                  {i18n.t('main.successfullySubmitted')}
+               </DialogTitleStyled>
                <DialogContentTextStyled>
-                  В ближайшее время с вами свяжется администратор <br />
-                  для согласования деталей.
+                  {i18n.t('main.administratorWillContactYou')}
+                  <br />
+                  {i18n.t('main.coordinate')}
                </DialogContentTextStyled>
             </SuccessSmsBox>
          ) : (
             <>
-               <DialogTitleStyled>Оставьте заявку</DialogTitleStyled>
+               <DialogTitleStyled>
+                  {i18n.t('main.leaveRequest')}
+               </DialogTitleStyled>
                <DialogContent>
                   <DialogContentTextStyled>
-                     Оставьте свой номер и наши специалисты свяжутся с Вами
-                     <br /> в ближайшее время
+                     {i18n.t('main.leaveRequestDescription')}
+                     <br /> {i18n.t('main.comingSoon')}
                   </DialogContentTextStyled>
                   <InputBoxStyled>
                      <div>
-                        <FormLabelStyled>Как к Вам обратиться?</FormLabelStyled>
+                        <FormLabelStyled>
+                           {' '}
+                           {i18n.t('main.howCanIContactYou')}
+                        </FormLabelStyled>
                         <TextFieldStyled
                            margin="dense"
                            id="name"
                            type="text"
                            variant="outlined"
-                           placeholder="Введите имя"
+                           placeholder={i18n.t('main.writeName')}
                            onChange={nameChangeHandler}
                            value={name}
                            InputProps={{
@@ -89,7 +100,7 @@ export const ApplicationModal = ({ onClose }) => {
                      </div>
                      <div>
                         <FormLabelStyled>
-                           Номер мобильного телефона
+                           {i18n.t('main.phoneNumber')}
                         </FormLabelStyled>
                         <TextFieldStyled
                            id="name"
@@ -116,7 +127,7 @@ export const ApplicationModal = ({ onClose }) => {
                      variant="contained"
                      onClick={submitHandler}
                   >
-                     <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+                     <span>{i18n.t('main.sendRequest')}</span>
                      <ButtonIconStyle disabled={disabledInfo} />
                   </ButtonStyle>
                </ButtonContainer>
@@ -198,6 +209,7 @@ const ButtonStyle = styled(Button)(() => ({
       padding: '10px 12px 10px 24px',
       span: {
          marginRight: '16px',
+         textTrasform: 'uppercase',
       },
    },
 }))

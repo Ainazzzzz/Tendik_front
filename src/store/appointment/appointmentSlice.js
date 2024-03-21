@@ -2,14 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
    createAppointments,
    getAllDoctors,
-   getCode,
    getDoctorsTimesheets,
 } from './appointmentThunk'
 
 const initialState = {
    doctors: [],
    doctorTimesheets: [],
-   codeEmail: '',
    error: null,
    appointmentData: [],
 }
@@ -33,12 +31,8 @@ export const appointmentSlice = createSlice({
          .addCase(getDoctorsTimesheets.rejected, (state, action) => {
             state.error = action.payload
          })
-         .addCase(getCode.fulfilled, (state, action) => {
-            state.codeEmail = action.payload.message
-         })
          .addCase(createAppointments.fulfilled, (state, action) => {
             state.appointmentData = action.payload
-            state.codeEmail = ''
          })
    },
 })

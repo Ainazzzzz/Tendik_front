@@ -12,7 +12,9 @@ import {
    FlebIcon,
    GastIcon,
    GemIcon,
+   Gilbert,
    GinIcon,
+   Johnston,
    KardIcon,
    NeiroIcon,
    NevrIcon,
@@ -24,8 +26,11 @@ import {
    PsikhIcon,
    PulmonIcon,
    RevmatIcon,
+   Rory,
+   Saj,
    TerapIcon,
    UrolIcon,
+   Veronica,
 } from '../../assets'
 
 export const MED_SERVICE = [
@@ -276,92 +281,28 @@ export const TRANSLATED_MED_SERVICES_ENG = {
 
 export const DEPARTMENTS = [
    {
-      id: 1,
-      title: 'Аллергология',
+      id: 2,
+      title: 'Педиатрия',
    },
    {
-      id: 2,
-      title: 'Вакцинация',
+      id: 6,
+      title: 'УЗИ',
    },
    {
       id: 3,
       title: 'Гинекология',
    },
    {
-      id: 4,
-      title: 'Кардиология',
-   },
-   {
       id: 5,
-      title: 'Нейрохирургия',
+      title: 'ЛОР',
    },
    {
-      id: 6,
-      title: 'Ортопедия',
+      id: 1,
+      title: 'Семейная медицина',
    },
    {
-      id: 7,
-      title: 'Офтальмология',
-   },
-   {
-      id: 8,
-      title: 'Психотерапия',
-   },
-   {
-      id: 9,
-      title: 'Ревматология',
-   },
-   {
-      id: 10,
-      title: 'Урология',
-   },
-   {
-      id: 11,
-      title: 'Эндокринология',
-   },
-   {
-      id: 12,
-      title: 'Анестезиология',
-   },
-   {
-      id: 13,
-      title: 'Гастроэнтерология',
-   },
-   {
-      id: 14,
-      title: 'Дерматология',
-   },
-   {
-      id: 15,
-      title: 'Неврология',
-   },
-   {
-      id: 16,
-      title: 'Онкология',
-   },
-   {
-      id: 17,
-      title: 'Отоларингология',
-   },
-   {
-      id: 18,
-      title: 'Проктология',
-   },
-   {
-      id: 19,
-      title: 'Пульмонология',
-   },
-   {
-      id: 20,
-      title: 'Терапия',
-   },
-   {
-      id: 21,
-      title: 'Флебология',
-   },
-   {
-      id: 22,
-      title: 'Физиотерапия',
+      id: 4,
+      title: 'Медицина внутренних органов',
    },
 ]
 export const MAIN_MED_SERVICES = [
@@ -415,32 +356,32 @@ export const MAIN_MED_SERVICES = [
 export const BEST_DOCTORS_IMAGES = [
    {
       id: 1,
-      img: DoctorVoinich,
-      name: 'Войнич Дарья',
-      description: 'Врач-терапевт',
+      img: Veronica,
+      name: 'Dr. Veronica',
+      description: 'Внутренняя и семейная медицина',
    },
    {
       id: 2,
-      img: DoctorMisko,
-      name: 'Мисько Екатерина',
-      description: 'Врач-Педиатр',
+      img: Johnston,
+      name: 'Dr. Dan Johnston',
+      description: 'Ухо, нос, горло и семейная медицина',
    },
    {
       id: 3,
-      img: DoctorDmitryi,
-      name: 'Дмитроченко Дмитрий',
-      description: 'Врач-уролог-андролог',
+      img: Rory,
+      name: 'Dr. Rory',
+      description: 'Гинекология и семейная медицина',
    },
    {
       id: 4,
-      img: DoctorAntux,
-      name: 'Антух Евгений',
-      description: 'Врач-невролог',
+      img: Gilbert,
+      name: 'Dr. Dan Gilbert',
+      description: 'Гинекология и семейная медицина',
    },
    {
       id: 5,
-      img: DoctorMisnik,
-      name: 'Мисник Елена',
-      description: 'Врач эндокринолог',
+      img: Saj,
+      name: 'Dr. Saj',
+      description: 'Ультразвуковая диагностика и педиатр',
    },
 ]

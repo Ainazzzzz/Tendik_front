@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Breadcrumbs, Stack, TableCell, styled } from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import AppTable from './AppTable'
 import { fetchMyAppointments } from '../../store/myappointments/myappointmentsThunk'
 
@@ -9,6 +10,8 @@ export const TableParents = () => {
    const dispatch = useDispatch()
    const myAppointmentsData = useSelector((state) => state.myappointments.data)
    const status = useSelector((state) => state.myappointments.status)
+
+   const { i18n } = useTranslation()
 
    useEffect(() => {
       if (status === 'idle') {
@@ -71,14 +74,14 @@ export const TableParents = () => {
          <Stack spacing={2}>
             <Container separator="›" aria-label="breadcrumb">
                <StyledNavLink to="/">
-                  <p>Главная</p>
+                  <p>{i18n.t('main.main')}</p>
                </StyledNavLink>
-               <p>Мои записи</p>
+               <p>{i18n.t('header.myAppointments')}</p>
             </Container>
          </Stack>
          <ContainerMyAppStyle>
             <div>
-               <h2>Мои записи</h2>
+               <h2>{i18n.t('header.myAppointments')}</h2>
                <div className="table">
                   <AppTable
                      data={myAppointmentsData}

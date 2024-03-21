@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Rating, styled } from '@mui/material'
-// import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import Button from '../UI/Button'
 import {
    DAYS_OF_A_WEEK_TRANSLATION,
@@ -14,7 +14,7 @@ import ConfirmModal from './ConfirmModal'
 const Registered = ({ goBack }) => {
    const [openConfirmModal, setOpenConfirmModal] = useState(false)
 
-   // const dispatch = useDispatch()
+   const { i18n } = useTranslation()
 
    const { appointmentData } = useSelector((state) => state.appointment)
 
@@ -74,7 +74,7 @@ const Registered = ({ goBack }) => {
          <Cancel onClick={cancelAppointment}>Отменить запись</Cancel>
          <StyledButton onClick={goBack}>
             <Plus />
-            Записаться еще
+            {i18n.t('main.makeAgain')}
          </StyledButton>
          {openConfirmModal ? (
             <ConfirmModal

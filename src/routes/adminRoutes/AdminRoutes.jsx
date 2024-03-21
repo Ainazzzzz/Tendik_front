@@ -28,8 +28,8 @@ const AdminRoutes = () => {
    }
 
    useEffect(() => {
-      navigate(routes.ADMIN.onlineRegistration)
-   }, [])
+      navigate('/online-registration')
+   }, [isAuth])
    return (
       <>
          <Header logoutHandler={logoutHandler} />

@@ -3,50 +3,49 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { Breadcrumbs } from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Map from './Map'
 
 const Contacts = () => {
    window.scrollTo({ top: 0 })
+
+   const { i18n } = useTranslation()
    return (
       <div>
          <Wrapper>
             <Stack spacing={2}>
                <Container separator="›" aria-label="breadcrumb">
                   <StyledNavLink to="/">
-                     <p>Главная</p>
+                     <p>{i18n.t('main.main')}</p>
                   </StyledNavLink>
-                  <p>Контакты</p>
+                  <p>{i18n.t('header.contacts')}</p>
                </Container>
             </Stack>
             <Titl>
-               Наши <span style={{ color: '#048741' }}>контакты</span>
+               {i18n.t('main.our')}{' '}
+               <span style={{ color: '#048741' }}>
+                  {i18n.t('main.contacts')}
+               </span>
             </Titl>
-            <Title>
-               Комфорт и спокойствие пациента — это часть качественного лечения!
-               Предупредите администратора, что вы едете к нам на машине и мы
-               предложим бесплатную подземную парковку при нашей клинике.
-            </Title>
+            <Title>{i18n.t('main.ourContactsDescription')}</Title>
             <ContainerInfo>
-               <ContactInfo>Контактные номера:</ContactInfo>
+               <ContactInfo>{i18n.t('main.contactNumbers')}</ContactInfo>
+               <ContactInfoP>+996(770) 503 284; +996(707) 503 284</ContactInfoP>
+            </ContainerInfo>
+            <ContainerInfo>
+               <ContactInfo>{i18n.t('main.ourAddress')}</ContactInfo>
+               <ContactInfoP>Кыргызстан, г. Бишкек, Тендик 4/1</ContactInfoP>
+            </ContainerInfo>
+            <ContainerInfo>
+               <ContactInfo>{i18n.t('main.clinicWorkingHours')}</ContactInfo>
                <ContactInfoP>
-                  +996(500) 344 433 ; +996(999) 344 433
+                  <p>Пн, Ср-Пт 08:30 до 16:00</p>
+                  <p>Вт 08:30 до 13:00</p>
                </ContactInfoP>
             </ContainerInfo>
             <ContainerInfo>
-               <ContactInfo>Наш адрес:</ContactInfo>
-               <ContactInfoP>
-                  Кыргызстан, г. Бишкек, Гражданская 119
-               </ContactInfoP>
-            </ContainerInfo>
-            <ContainerInfo>
-               <ContactInfo>Режим работы клиники:</ContactInfo>
-               <ContactInfoP>
-                  Понедельник - суббота с 08:00 до 18:00.
-               </ContactInfoP>
-            </ContainerInfo>
-            <ContainerInfo>
-               <ContactInfo>Электронная почта :</ContactInfo>
-               <ContactInfoP> healthchek.kg</ContactInfoP>
+               <ContactInfo>{i18n.t('main.email')}</ContactInfo>
+               <ContactInfoP> tendik.kg</ContactInfoP>
             </ContainerInfo>
          </Wrapper>
          <Map />

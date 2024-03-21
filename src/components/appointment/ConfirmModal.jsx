@@ -1,6 +1,7 @@
 import { styled } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Button from '../UI/Button'
 import { cancelAppointment } from '../../store/appointment/appointmentThunk'
 import { Close } from '../../assets'
@@ -8,14 +9,16 @@ import { Close } from '../../assets'
 const ConfirmModal = ({ handleClose, appointmentData, goBack }) => {
    const [cancelSuccess, setCancelSuccess] = useState(false)
 
+   const { i18n } = useTranslation()
+
    const dispatch = useDispatch()
 
    const handleCancel = () => {
-      dispatch(
-         cancelAppointment({ appointmentId: appointmentData.appointmentId })
-      ).then(() => {
-         setCancelSuccess(true)
-      })
+      dispatch(cancelAppointment({ appointmentId: appointmentData.id })).then(
+         () => {
+            setCancelSuccess(true)
+         }
+      )
    }
 
    return (
@@ -26,7 +29,7 @@ const ConfirmModal = ({ handleClose, appointmentData, goBack }) => {
                   <Close onClick={goBack} />
                </div>
                <p>Запись отменена</p>
-               <Button onClick={goBack}>Записаться еще</Button>
+               <Button onClick={goBack}>{i18n.t('main.makeAgain')}</Button>
             </ModalContent>
          ) : (
             <ModalContent>

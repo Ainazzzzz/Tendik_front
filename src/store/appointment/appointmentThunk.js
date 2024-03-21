@@ -41,25 +41,6 @@ export const getDoctorsTimesheets = createAsyncThunk(
    }
 )
 
-export const getCode = createAsyncThunk(
-   'appointment/code',
-   async ({ email }, { rejectWithValue }) => {
-      try {
-         const { data } = await axiosInstance.get('api/appointments/received', {
-            params: { email },
-         })
-         return data
-      } catch (error) {
-         const errorMessage = error.response.data.message.replace(
-            /^\[|\]$/g,
-            ''
-         )
-         notify(errorMessage, 'error')
-         return rejectWithValue(error)
-      }
-   }
-)
-
 export const createAppointments = createAsyncThunk(
    'appoinement/createAppoinement',
    async ({ obj }, { rejectWithValue }) => {
@@ -71,17 +52,17 @@ export const createAppointments = createAsyncThunk(
                doctorId: obj.doctorId,
                dateOfVisiting: obj.date,
                timeOfVisiting: obj.time,
-               userFullName: obj.name,
-               userPhoneNumber: obj.phone,
-               userEmail: obj.email,
+               firstName: obj.firstName,
+               lastName: obj.lastName,
+               middleName: obj.middleName,
+               phoneNumber: obj.phone,
             }
          )
          return data
       } catch (error) {
-         const errorMessage = error.response.data.message.replace(
-            /^\[|\]$/g,
-            ''
-         )
+         const errorMessage = error.response.data.message
+            .replace(/^\[|\]$/g, '')
+            .substring(0, 48)
          notify(errorMessage, 'error')
          return rejectWithValue(error)
       }

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { FormLabel, InputAdornment } from '@mui/material'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import PhotoWoman from '../assets/images/applicationform-woman.png'
 import Button from './UI/Button'
 import { UserIcon, PhoneIcon, ArrowIcon } from '../assets'
@@ -18,6 +19,8 @@ const ApplicationForm = () => {
       name: '',
       phoneNumber: '',
    })
+
+   const { i18n } = useTranslation()
 
    const dispatch = useDispatch()
 
@@ -79,10 +82,10 @@ const ApplicationForm = () => {
    return (
       <ApplicationFormContainer>
          <ApplicationFormInnerContainer>
-            <h2>Оставьте заявку</h2>
+            <h2>{i18n.t('main.leaveRequest')}</h2>
             <p>
-               Оставьте свой номер и наши специалисты свяжутся с Вами <br />в
-               ближайшее время
+               {i18n.t('main.leaveRequestDescription')}
+               <br /> {i18n.t('main.comingSoon')}
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -107,7 +110,7 @@ const ApplicationForm = () => {
                   <span className="error-message">{errors.name}</span>
                </div>
                <div>
-                  <FormLabel>Номер мобильного телефона</FormLabel>
+                  <FormLabel>{i18n.t('main.phoneNumber')}</FormLabel>
                   <Input
                      className="input-container"
                      InputProps={{
@@ -128,7 +131,7 @@ const ApplicationForm = () => {
                </div>
             </form>
             <StyledButton type="submit" onClick={handleSubmit}>
-               ОТПРАВИТЬ ЗАЯВКУ <ArrowIcon className="arrow-icon" />
+               {i18n.t('main.sendRequest')} <ArrowIcon className="arrow-icon" />
             </StyledButton>
          </ApplicationFormInnerContainer>
          <img src={PhotoWoman} alt="" />
@@ -210,6 +213,7 @@ const ApplicationFormInnerContainer = styled('div')(() => ({
 }))
 
 const StyledButton = styled(Button)(() => ({
+   textTransform: 'uppercase',
    borderRadius: '3rem',
    '& .arrow-icon': {
       marginLeft: '0.5rem',

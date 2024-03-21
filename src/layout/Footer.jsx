@@ -1,92 +1,106 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NavLink } from 'react-router-dom'
-import {
-   Email,
-   InstagramWhite,
-   LocationIcon,
-   Logo,
-   PhoneIcon,
-   TelegramWhite,
-   TimeIcon,
-   WhatsAppWhite,
-} from '../assets'
+import { useTranslation } from 'react-i18next'
+import PhoneIcon from '../assets/icons/phone-outlined1.svg'
+import Email from '../assets/icons/email-outlined.svg'
+import TimeIcon from '../assets/icons/time-outlined.svg'
+import LocationIcon from '../assets/icons/location-outlined.svg'
+import InstagramIcon from '../assets/icons/instagram-icon.svg'
+import WhatsappIcon from '../assets/icons/whatsapp-icon.svg'
+import FacebookWhite from '../assets/icons/facebook_white.svg'
+import { HealthCheckIcon, TendikAPK } from '../assets'
 
 const Footer = () => {
+   const { i18n } = useTranslation()
    return (
       <FooterContainer>
          <InfoContainer>
             <InfoBlock>
                <LogoContainer>
                   <NavLink to="/homepage">
-                     <Logo />
+                     <HealthCheckIcon />
                   </NavLink>
                </LogoContainer>
-               <span>Медицинская клиника «HealthCheck»</span>
+               <span>{i18n.t('main.medicalClinic')}</span>
                <p>
-                  Международная Медицинская клиника <br /> «HealthCheck»— это
-                  клиника, в которой применяются <br />
-                  новейшие диагностические и лечебные технологии и<br /> ведут
-                  прием лучшие специалисты.
+                  {i18n.t('main.welcomeDescription')} <br />{' '}
+                  {i18n.t('main.welcomeDescription2')} <br />
+                  {i18n.t('main.welcomeDescription3')}
+                  <br /> {i18n.t('main.welcomeDescription4')}
                </p>
             </InfoBlock>
             <InfoBlock>
-               <span>Контактная информация</span>
+               <span>{i18n.t('main.contactInformation')}</span>
                <li>
-                  <LocationIcon />
-                  <p>106452, г. Бишкек, Гражданская 119</p>
+                  <img src={LocationIcon} alt="location" />
+                  <p>106452, г. Бишкек, Тендик 4/1</p>
                </li>
                <li>
-                  <TimeIcon />
-                  <p>пн-сб 08:00 до 18:00</p>
+                  <div>
+                     <img src={TimeIcon} alt="time" />
+                  </div>
+                  <div>
+                     <p>Пн, Ср-Пт 08:30 до 16:00</p>
+                     <p>Вт 08:30 до 13:00</p>
+                  </div>
                </li>
                <li>
-                  <PhoneIcon />
+                  <img src={PhoneIcon} alt="phone" />
                   <p>
-                     +996(500) 344 433 <br /> +996(999) 344 433
+                     +996(770) 503 284
+                     <br /> +996(707) 503 284
                   </p>
                </li>
                <li>
-                  <Email />
-                  <p>healthchek.kg</p>
+                  <img src={Email} alt="email" />
+                  <p>tendik.kg</p>
                </li>
             </InfoBlock>
             <InfoBlock>
-               <span>Мы в социальных сетях:</span>
+               <span>{i18n.t('main.weAreOnSocialMedia')}</span>
                <SocialLinks>
                   <a
-                     href="https://www.instagram.com/"
+                     href="https://www.instagram.com/tendikproject"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <InstagramWhite />
+                     <img src={InstagramIcon} alt="instagram" />
                   </a>
                   <a
-                     href="https://telegram.org/"
+                     href="https://www.facebook.com/tendikproject/?locale=ru_RU"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <TelegramWhite />
+                     <img src={FacebookWhite} alt="telegram" />
                   </a>
                   <a
                      href="https://whatsapp.com/"
                      target="_blank"
                      rel="noreferrer"
                   >
-                     <WhatsAppWhite />
+                     <img src={WhatsappIcon} alt="whatsapp" />
                   </a>
                </SocialLinks>
             </InfoBlock>
+            <InfoBlock>
+               <DownloadText>
+                  Скачивайте наше приложение для Android
+               </DownloadText>
+               <TendikQR src={TendikAPK} alt="" />
+            </InfoBlock>
          </InfoContainer>
          <Navigations>
-            <NavLink to="/about-clinic">О клинике</NavLink>
-            <NavLink to="/service">Услуги</NavLink>
-            <NavLink to="/doctors">Врачи</NavLink>
-            <NavLink to="/prices">Прайс</NavLink>
-            <NavLink to="/contacts">Контакты</NavLink>
+            <NavLink to="/aboutClinic">{i18n.t('header.aboutClinic')}</NavLink>
+            <NavLink to="/doctors">{i18n.t('header.doctors')}</NavLink>
+            <NavLink to="/price">{i18n.t('header.price')}</NavLink>
+            <NavLink to="/reviews">{i18n.t('main.reviews')}</NavLink>
+            <NavLink to="/contacts">{i18n.t('header.contacts')}</NavLink>
          </Navigations>
          <div className="line" />
-         <p>© Peaksoft House 2023 | HealthCheck | Все права защищены</p>
+         <p>
+            © Peaksoft House 2023 | Tendik | {i18n.t('main.allRightsReserved')}
+         </p>
       </FooterContainer>
    )
 }
@@ -112,7 +126,7 @@ const FooterContainer = styled('footer')`
 const InfoContainer = styled('div')`
    display: flex;
    align-items: flex-start;
-   gap: 8.5rem;
+   gap: 4rem;
    font-family: 'Manrope', sans-serif;
    color: #ccc;
    font-size: 1rem;
@@ -163,4 +177,14 @@ const Navigations = styled('div')`
       text-decoration: none;
       color: #ccc;
    }
+`
+
+const TendikQR = styled('img')`
+   width: 200px;
+`
+
+const DownloadText = styled('p')`
+   font-weight: 500;
+   color: #fff !important;
+   margin-bottom: 10px;
 `
