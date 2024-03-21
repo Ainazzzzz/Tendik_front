@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35d23b86-ea3e-4ed7-8034-c8e3e4c8de43" name="Changes" comment="fixed conflicts">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/locales/ky/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ky/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/locales/ru/translation.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/translation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/constants/accordions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/constants/accordions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Prices.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Prices.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +96,7 @@
       <workItem from="1710825646762" duration="359000" />
       <workItem from="1710945923495" duration="620000" />
       <workItem from="1710949102614" duration="14000" />
-      <workItem from="1711022052022" duration="1393000" />
+      <workItem from="1711022052022" duration="4002000" />
     </task>
     <task id="LOCAL-00001" summary="fixed conflicts">
       <option name="closed" value="true" />
