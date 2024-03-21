@@ -156,6 +156,11 @@ export const prices = [
       price: 500,
    },
    {
+      id: 26,
+      title: 'consultationAroundCity',
+      price: 100,
+   },
+   {
       id: 3,
       title: 'consultationForForeigners',
       price: 2000,
@@ -232,13 +237,18 @@ export const prices = [
    },
    {
       id: 18,
-      title: 'IUDRemovalSilver',
-      price: 1400,
+      title: 'IUDRemoval',
+      price: 300,
    },
    {
-      id: 19,
-      title: 'IUDRemovalCopper',
-      price: 900,
+      id: 27,
+      title: 'IUDInstallationSilver',
+      price: 1500,
+   },
+   {
+      id: 28,
+      title: 'IUDInstallationCopper',
+      price: 1000,
    },
    {
       id: 20,
