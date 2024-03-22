@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { prices } from '../utils/constants/accordions'
 
 const Prices = () => {
+   console.log('beka random')
+
    window.scrollTo({ top: 0 })
 
    const { i18n } = useTranslation()
