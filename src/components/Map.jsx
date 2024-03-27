@@ -20,6 +20,13 @@ const Map = () => {
          icon: customIcon,
       })
 
+      locationMarker.on('click', () => {
+         window.open(
+            'https://2gis.kg/bishkek/firm/70000001040006417?m=74.584487%2C42.943842%2F16',
+            '_blank'
+         )
+      })
+
       const companyIcon = DG.icon({
          iconUrl: CompanyIcon,
          iconAnchor: [32, 5],

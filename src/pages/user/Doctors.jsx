@@ -41,8 +41,6 @@ const Doctors = () => {
       ? Object.keys(groupedDoctors)
       : Object.keys(groupedDoctors).slice(0, 4)
 
-   console.log(visibleDepartments, 'psjsp')
-
    return (
       <StyledDoctorsContainer>
          <Stack spacing={2}>
@@ -75,8 +73,6 @@ const Doctors = () => {
                </div>
             ))}
             <StyledSpan>
-               {i18n.t('main.ourClinicDoctors')}{' '}
-               <b>{i18n.t('main.moreDoctors')}</b>
                {!showAllDepartments ? (
                   <StyledButton onClick={handleShowMoreClick}>
                      {i18n.t('main.readMore')}

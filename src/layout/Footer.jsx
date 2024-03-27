@@ -75,7 +75,7 @@ const Footer = () => {
                      <img src={FacebookWhite} alt="telegram" />
                   </a>
                   <a
-                     href="https://whatsapp.com/"
+                     href="whatsapp://send?phone=+996770503284"
                      target="_blank"
                      rel="noreferrer"
                   >
@@ -91,9 +91,9 @@ const Footer = () => {
             </InfoBlock>
          </InfoContainer>
          <Navigations>
-            <NavLink to="/aboutClinic">{i18n.t('header.aboutClinic')}</NavLink>
+            <NavLink to="/about-clinic">{i18n.t('header.aboutClinic')}</NavLink>
             <NavLink to="/doctors">{i18n.t('header.doctors')}</NavLink>
-            <NavLink to="/price">{i18n.t('header.price')}</NavLink>
+            <NavLink to="/prices">{i18n.t('header.price')}</NavLink>
             <NavLink to="/reviews">{i18n.t('main.reviews')}</NavLink>
             <NavLink to="/contacts">{i18n.t('header.contacts')}</NavLink>
          </Navigations>
