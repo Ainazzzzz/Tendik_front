@@ -75,7 +75,7 @@ const Footer = () => {
                      <img src={FacebookWhite} alt="telegram" />
                   </a>
                   <a
-                     href="whatsapp://send?phone=+996770503284"
+                     href="https://wa.me/996707503284"
                      target="_blank"
                      rel="noreferrer"
                   >
